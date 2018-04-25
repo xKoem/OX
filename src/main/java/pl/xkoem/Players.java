@@ -12,7 +12,7 @@ public class Players {
     }
 
     public Player getPlayer(int playerNumber) {
-        return players[playerNumber];
+        return players[playerNumber];  //todo do obtestowania
     }
 
     public void printPlayerNames() {

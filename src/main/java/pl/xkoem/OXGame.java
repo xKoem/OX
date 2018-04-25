@@ -27,10 +27,8 @@ public class OXGame {
      */
 
     public void run() {
-        Init init = new Init(userInput, userOutput, players, gameConfiguration);
-        players = init.askForNames();
-        gameConfiguration = init.askForConfiguration(gameConfiguration);
-        players.printPlayerNames();
+        initGame();
+
         Match match = new Match(userInput, userOutput, players, gameConfiguration);
 
         do {
@@ -39,6 +37,13 @@ public class OXGame {
 
         EndOfGame endOfGame = new EndOfGame(userOutput, match.getResults());
         endOfGame.showResults();
+    }
+
+    private void initGame() {
+        Init init = new Init(userInput, userOutput, players, gameConfiguration);
+        players = init.askForNames();
+        gameConfiguration = init.askForConfiguration(gameConfiguration);
+        players.printPlayerNames();
     }
 
 
