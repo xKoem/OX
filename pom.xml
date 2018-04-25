@@ -6,15 +6,16 @@
 
     <groupId>pl.xkoem</groupId>
     <artifactId>OXGame</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.2</version>
     <name>OXGame</name>
-    <packaging>jar</packaging>
+    <description>Simple OX Game</description>
 
 
 
     <properties>
         <testng.version>6.14.3</testng.version>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 

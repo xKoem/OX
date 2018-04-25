@@ -1,5 +1,6 @@
 package pl.xkoem;
 
+import pl.xkoem.gamestates.EndOfGame;
 import pl.xkoem.gamestates.Init;
 import pl.xkoem.gamestates.Match;
 
@@ -20,15 +21,25 @@ public class OXGame {
         gameConfiguration = new GameConfiguration();
     }
 
+
+    /**
+     * Główna metoda uruchamiająca cały proces gry po kolei
+     */
+
     public void run() {
         Init init = new Init(userInput, userOutput, players, gameConfiguration);
         players = init.askForNames();
         gameConfiguration = init.askForConfiguration(gameConfiguration);
         players.printPlayerNames();
         Match match = new Match(userInput, userOutput, players, gameConfiguration);
-        match.begin();
-    }
 
+        do {
+            match.begin();
+        } while (!match.isFinished());
+
+        EndOfGame endOfGame = new EndOfGame(userOutput, match.getResults());
+        endOfGame.showResults();
+    }
 
 
 }

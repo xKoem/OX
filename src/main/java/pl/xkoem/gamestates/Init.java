@@ -28,8 +28,7 @@ public class Init {
         players.setPlayers(playerO, playerX);
         return players;
     }
-
-
+    
     public GameConfiguration askForConfiguration(GameConfiguration gameConfiguration) {
         askForBoardSettings();
         askForLanguage();

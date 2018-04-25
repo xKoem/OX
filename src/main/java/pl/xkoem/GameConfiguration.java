@@ -4,7 +4,6 @@ import java.security.InvalidParameterException;
 
 public class GameConfiguration {
 
-
     private Integer sizeX;
     private Integer charsToWin;
     private Integer sizeY;
@@ -27,5 +26,6 @@ public class GameConfiguration {
     public void setLanguage(String language) {
         this.language = language;
     }
+
 
 }
