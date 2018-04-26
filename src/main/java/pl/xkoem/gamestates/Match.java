@@ -1,6 +1,7 @@
 package pl.xkoem.gamestates;
 
 import pl.xkoem.DashBoard;
+import pl.xkoem.GameBoard;
 import pl.xkoem.GameConfiguration;
 import pl.xkoem.Players;
 
@@ -34,6 +35,8 @@ public class Match {
     public void begin() {
         userOutput.accept("Match began");
         counter++;
+        GameBoard gameBoard = new GameBoard(gameConfiguration,userOutput);
+        gameBoard.drawBoard();
     }
 
     public boolean isFinished() {

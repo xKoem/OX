@@ -9,6 +9,14 @@ public class GameConfiguration {
     private Integer sizeY;
     private String language;
 
+    GameConfiguration() {
+        this(3,3,3);
+    }
+
+    GameConfiguration(Integer sizeX, Integer sizeY, Integer charsToWin) {
+        setBoardSettings(sizeX, sizeY, charsToWin);
+    }
+
     public void setBoardSettings(Integer sizeX, Integer sizeY, Integer charsToWin) throws InvalidParameterException {
         if(charsToWin > sizeX || charsToWin > sizeY) {
             throw new InvalidParameterException("Too big chars to win");
@@ -28,4 +36,7 @@ public class GameConfiguration {
     }
 
 
+    public Integer[] getBoardSize() {
+        return new Integer[]{sizeX, sizeY};
+    }
 }
