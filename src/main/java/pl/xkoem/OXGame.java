@@ -26,11 +26,9 @@ public class OXGame {
      * Główna metoda uruchamiająca cały proces gry po kolei
      */
 
-    public void run() {
-        Init init = new Init(userInput, userOutput, players, gameConfiguration);
-        players = init.askForNames();
-        gameConfiguration = init.askForConfiguration(gameConfiguration);
-        players.printPlayerNames();
+    void run() {
+        initGame();
+
         Match match = new Match(userInput, userOutput, players, gameConfiguration);
 
         do {
@@ -39,6 +37,13 @@ public class OXGame {
 
         EndOfGame endOfGame = new EndOfGame(userOutput, match.getResults());
         endOfGame.showResults();
+    }
+
+    private void initGame() {
+        Init init = new Init(userInput, userOutput, players, gameConfiguration);
+        players = init.askForNames();
+        gameConfiguration = init.askForConfiguration(gameConfiguration);
+        players.printPlayerNames();
     }
 
 
