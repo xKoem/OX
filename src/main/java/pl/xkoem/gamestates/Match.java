@@ -29,10 +29,9 @@ public class Match {
         counter = 0;
     }
 
-    public void begin(Player player) {
+    public void begin(Player player, DashBoard dashBoard) {
         counter++;
         GameBoard gameBoard = new GameBoard(gameConfiguration,userOutput);
-
         Judge judge = new Judge(gameBoard.boardSize());
         do {
             player = players.getOppositePlayer(player);
@@ -40,6 +39,9 @@ public class Match {
             turn.run();
             judge.checkNewPosition(gameBoard);
         }while(!judge.isMatchFinished());
+
+        Player winner = player; //todo set real winner
+        dashBoard.addWinner(player);
         userOutput.accept("Koniec meczu. Zwyciezca: " + player.getName());
     }
 
@@ -47,7 +49,4 @@ public class Match {
         return counter == 3;
     }
 
-    public DashBoard getResults() {
-        return new DashBoard();
-    }
 }

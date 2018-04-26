@@ -31,15 +31,15 @@ public class OXGame {
 
     void run() {
         initGame();
-
         Match match = new Match(userInput, userOutput, players, gameConfiguration);
         Player player = players.getPlayer(0);
+        DashBoard dashBoard = new DashBoard(players);
         do {
-            match.begin(player);
+            match.begin(player, dashBoard);
         } while (!match.isFinished());
 
-        EndOfGame endOfGame = new EndOfGame(userOutput, match.getResults());
-        endOfGame.showResults();
+        EndOfGame endOfGame = new EndOfGame(userOutput, dashBoard);
+        endOfGame.printResults();
     }
 
     private void initGame() {
