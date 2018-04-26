@@ -20,6 +20,6 @@ public class GameBoardTests {
 
     @Test
     public void checkInvalidPositionForDefaultBoard() {
-        Assert.assertFalse(gameBoard.isPositionValid(9));
+        Assert.assertFalse(gameBoard.isPositionValid(-1));
     }
 }
