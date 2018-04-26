@@ -1,5 +1,6 @@
 package pl.xkoem;
 
+import java.security.InvalidParameterException;
 import java.util.function.Consumer;
 
 public class GameBoard {
@@ -30,5 +31,18 @@ public class GameBoard {
             stringBuilder.append("\n");
         }
         userOutput.accept(stringBuilder.toString());
+    }
+
+    public boolean isPositionValid(Integer position) {
+        if(position < 0 || position > boardSymbols.length -1)
+            return false;
+        return boardSymbols[position] == null;
+    }
+
+    public void setSymbolAtPosition(Symbol symbol, Integer position) throws InvalidParameterException {
+        if(!isPositionValid(position)) {
+            throw new InvalidParameterException("Bad position");
+        }
+        boardSymbols[position] = symbol;
     }
 }
