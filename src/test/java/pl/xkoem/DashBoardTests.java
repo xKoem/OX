@@ -17,9 +17,9 @@ public class DashBoardTests {
 
     @Test
     public void checkIfIsAnyWinner_ShouldReturnTrue() {
-        dashBoard.addWinner(players.getPlayer(0)); // adding 3 points to p1
-        dashBoard.addWinner(players.getPlayer(0)); // adding 3 points to p1
-        dashBoard.addWinner(players.getPlayer(1)); // adding 3 points to p2
+        dashBoard.addPointsToWinner(players.getPlayer(0)); // adding 3 points to p1
+        dashBoard.addPointsToWinner(players.getPlayer(0)); // adding 3 points to p1
+        dashBoard.addPointsToWinner(players.getPlayer(1)); // adding 3 points to p2
 
         Assert.assertTrue(dashBoard.isWinner());
     }
@@ -27,8 +27,8 @@ public class DashBoardTests {
 
     @Test
     public void checkIfIsAnyWinner_ShouldReturnFalse() {
-        dashBoard.addWinner(players.getPlayer(0)); // adding 3 points to p1
-        dashBoard.addWinner(players.getPlayer(1)); // adding 3 points to p2
+        dashBoard.addPointsToWinner(players.getPlayer(0)); // adding 3 points to p1
+        dashBoard.addPointsToWinner(players.getPlayer(1)); // adding 3 points to p2
 
         Assert.assertFalse(dashBoard.isWinner());
     }

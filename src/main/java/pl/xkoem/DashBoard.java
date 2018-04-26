@@ -4,6 +4,8 @@ import java.util.*;
 
 public class DashBoard {
 
+    private static Integer POINTS_FOR_WIN = 3;
+
     private HashMap<Player, Integer> playersScores = new HashMap<>();
 
     DashBoard(Players players) {
@@ -11,8 +13,8 @@ public class DashBoard {
         playersScores.put(players.getPlayer(1), 0);
     }
 
-    public void addWinner(Player player) {
-        playersScores.replace(player, playersScores.get(player)+3);
+    public void addPointsToWinner(Player player) {
+        playersScores.replace(player, playersScores.get(player) + POINTS_FOR_WIN);
     }
 
     boolean isWinner() {

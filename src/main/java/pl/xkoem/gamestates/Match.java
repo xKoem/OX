@@ -41,7 +41,7 @@ public class Match {
         }while(!judge.isMatchFinished());
 
         Player winner = player; //todo set real winner
-        dashBoard.addWinner(player);
+        dashBoard.addPointsToWinner(player);
         userOutput.accept("Koniec meczu. Zwyciezca: " + player.getName());
     }
 
