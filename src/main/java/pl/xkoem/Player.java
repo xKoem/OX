@@ -29,4 +29,8 @@ public class Player {
     public String getName() {
         return playerName;
     }
+
+    public Symbol getSymbol() {
+        return symbol;
+    }
 }

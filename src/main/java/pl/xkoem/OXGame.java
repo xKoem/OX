@@ -4,6 +4,7 @@ import pl.xkoem.gamestates.EndOfGame;
 import pl.xkoem.gamestates.Init;
 import pl.xkoem.gamestates.Match;
 
+import java.lang.management.PlatformLoggingMXBean;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -14,12 +15,14 @@ public class OXGame {
     private final Consumer<String> userOutput;
     private GameConfiguration gameConfiguration;
 
-    public OXGame(Players players, Supplier<String> userInput, Consumer<String> userOutput) {
+
+    public OXGame(Players players, Supplier<String> userInput, Consumer<String> userOutput, GameConfiguration gameConfiguration) {
         this.players = players;
         this.userInput = userInput;
         this.userOutput = userOutput;
-        gameConfiguration = new GameConfiguration();
+        this.gameConfiguration = gameConfiguration;
     }
+
 
 
     /**
@@ -30,9 +33,9 @@ public class OXGame {
         initGame();
 
         Match match = new Match(userInput, userOutput, players, gameConfiguration);
-
+        Player player = players.getPlayer(0);
         do {
-            match.begin();
+            match.begin(player);
         } while (!match.isFinished());
 
         EndOfGame endOfGame = new EndOfGame(userOutput, match.getResults());

@@ -1,8 +1,6 @@
 package pl.xkoem.gamestates;
 
-import pl.xkoem.DashBoard;
-import pl.xkoem.GameConfiguration;
-import pl.xkoem.Players;
+import pl.xkoem.*;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -31,9 +29,18 @@ public class Match {
         counter = 0;
     }
 
-    public void begin() {
-        userOutput.accept("Match began");
+    public void begin(Player player) {
         counter++;
+        GameBoard gameBoard = new GameBoard(gameConfiguration,userOutput);
+
+        Judge judge = new Judge(gameBoard.boardSize());
+        do {
+            player = players.getOppositePlayer(player);
+            Turn turn = new Turn(userOutput, userInput, player, gameBoard);
+            turn.run();
+            judge.checkNewPosition(gameBoard);
+        }while(!judge.isMatchFinished());
+        userOutput.accept("Koniec meczu. Zwyciezca: " + player.getName());
     }
 
     public boolean isFinished() {

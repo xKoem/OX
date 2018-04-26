@@ -60,4 +60,10 @@ public class GameConfigurationTest {
         Assert.assertTrue(isError);
     }
 
+    @Test
+    public void testBoardSizeFromDefaultGameConfiguration() {
+        Assert.assertEquals(gameConfiguration.getBoardSize(), new Integer[]{3,3});
+    }
+
+
 }
