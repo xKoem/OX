@@ -12,6 +12,7 @@ class Turn {
     private Supplier<String> userInput;
     private Player player;
     private GameBoard gameBoard;
+    private Integer newestPosition;
 
     Turn(Consumer<String> userOutput, Supplier<String> userInput, Player player, GameBoard gameBoard) {
         this.userOutput = userOutput;
@@ -32,6 +33,7 @@ class Turn {
         try {
             Integer position = Integer.valueOf(playerOutputPosition);
             gameBoard.setSymbolAtPosition(player.getSymbol(), position);
+            newestPosition = position;
         } catch (InvalidParameterException|NumberFormatException e) {
             userOutput.accept("Bledne pole, sprobuj jeszcze raz");
             setSymbolAtPositionPosition();

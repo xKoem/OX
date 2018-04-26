@@ -45,4 +45,8 @@ public class GameBoard {
         }
         boardSymbols[position] = symbol;
     }
+
+    public Integer boardSize() {
+        return boardSymbols.length;
+    }
 }

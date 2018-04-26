@@ -33,10 +33,14 @@ public class Match {
         counter++;
         GameBoard gameBoard = new GameBoard(gameConfiguration,userOutput);
 
-
-        player = players.getOppositePlayer(player);
-        Turn turn = new Turn(userOutput, userInput, player, gameBoard);
-        turn.run();
+        Judge judge = new Judge(gameBoard.boardSize());
+        do {
+            player = players.getOppositePlayer(player);
+            Turn turn = new Turn(userOutput, userInput, player, gameBoard);
+            turn.run();
+            judge.checkNewPosition(gameBoard);
+        }while(!judge.isMatchFinished());
+        userOutput.accept("Koniec meczu. Zwyciezca: " + player.getName());
     }
 
     public boolean isFinished() {
