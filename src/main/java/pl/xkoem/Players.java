@@ -11,11 +11,11 @@ public class Players {
         players[1] = new Player(player2, O);
     }
 
-    public Player getPlayer(int playerNumber) {
+    Player getPlayer(int playerNumber) {
         return players[playerNumber];  //todo do obtestowania
     }
 
-    public void printPlayerNames() {
+    void printPlayerNames() {
         System.out.println(String.format("Gracz O: %s Gracz X: %s", players[0].getName(), players[1].getName()));
     }
 }

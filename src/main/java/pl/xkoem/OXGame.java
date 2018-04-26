@@ -26,7 +26,7 @@ public class OXGame {
      * Główna metoda uruchamiająca cały proces gry po kolei
      */
 
-    public void run() {
+    void run() {
         initGame();
 
         Match match = new Match(userInput, userOutput, players, gameConfiguration);
