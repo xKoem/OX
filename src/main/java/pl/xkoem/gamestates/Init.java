@@ -37,15 +37,10 @@ public class Init {
 
     private void askForLanguage() {
         userOutput.accept("Wybierz jezyk: "); //todo obsluga wprowadzania jezykow
-        gameConfiguration.setLanguage("pl");
 
     }
 
     private void askForBoardSettings() {
         userOutput.accept("Podaj rozmiary stolu: "); //todo obsluga rozmiarow
-//        Integer sizeX = 3;
-//        Integer sizeY = 3;
-//        Integer charsToWin = 3;
-//        gameConfiguration.setBoardSettings(sizeX,sizeY,charsToWin); //todo catch InvalidParameterException
     }
 }

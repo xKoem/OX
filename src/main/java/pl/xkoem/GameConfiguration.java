@@ -15,6 +15,7 @@ public class GameConfiguration {
 
     GameConfiguration(Integer sizeX, Integer sizeY, Integer charsToWin) {
         setBoardSettings(sizeX, sizeY, charsToWin);
+        setLanguage("pl");
     }
 
     public void setBoardSettings(Integer sizeX, Integer sizeY, Integer charsToWin) throws InvalidParameterException {
