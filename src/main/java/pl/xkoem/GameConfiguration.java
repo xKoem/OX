@@ -20,7 +20,7 @@ public class GameConfiguration {
 
     public void setBoardSettings(Integer sizeX, Integer sizeY, Integer charsToWin) throws InvalidParameterException {
         if(charsToWin > sizeX || charsToWin > sizeY) {
-            throw new InvalidParameterException("Too big chars to win");
+            throw new InvalidParameterException("Not possible to win on board <"+sizeX+"/"+sizeY+"> when amount of charts to win is specified to " + charsToWin);
         }
 
         if(charsToWin < 3) {
