@@ -6,18 +6,21 @@ import java.util.function.Consumer;
 
 public class EndOfGame {
     private final Consumer<String> userOutput;
-    private final DashBoard results;
+    private final DashBoard dashBoard;
 
-    public EndOfGame(Consumer<String> userOutput, DashBoard results) {
+    public EndOfGame(Consumer<String> userOutput, DashBoard dashBoard) {
         this.userOutput = userOutput;
-        this.results = results;
+        this.dashBoard = dashBoard;
     }
 
     /**
      * Pojazuje rezultat calej rozgrywki na podstawie otrzymanego DashBoardu
      */
 
-    public void showResults() {
-        userOutput.accept("Results: ");
+    public void printResults() {
+        StringBuilder results = new StringBuilder();
+        results.append("Winner: ").append(dashBoard.getWinner()).append(" points: ").append(dashBoard.getWinnerPoints()).append("\n")
+                .append("Loser: ").append(dashBoard.getLoser()).append(" points: ").append(dashBoard.getLoserPoints()).append("\n");
+        userOutput.accept(results.toString());
     }
 }

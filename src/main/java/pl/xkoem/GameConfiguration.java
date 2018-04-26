@@ -10,7 +10,7 @@ public class GameConfiguration {
     private String language;
 
     GameConfiguration() {
-        this(8,8,8);
+        this(3,3,3);
     }
 
     GameConfiguration(Integer sizeX, Integer sizeY, Integer charsToWin) {
