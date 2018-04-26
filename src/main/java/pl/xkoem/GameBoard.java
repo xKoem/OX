@@ -24,9 +24,15 @@ public class GameBoard {
         StringBuilder stringBuilder = new StringBuilder();
         int position = 0;
 
+        int maxSize = Integer.toString(boardSymbols.length).length();
+
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
-                stringBuilder.append(boardSymbols[position] == null? position++: boardSymbols[position++]);
+                String s = String.format( //fixme
+                        boardSymbols[position] == null? "%1$"+(maxSize+2)+"s": "%1$"+(maxSize+2 + 9)+"s" ,
+                        boardSymbols[position] == null? position++: boardSymbols[position++]
+                );
+                stringBuilder.append(s);
             }
             stringBuilder.append("\n");
         }
