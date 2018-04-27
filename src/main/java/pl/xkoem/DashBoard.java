@@ -2,14 +2,14 @@ package pl.xkoem;
 
 public class DashBoard {
 
-    private static Integer POINTS_FOR_WIN = 3;
-    private static Integer POINTS_FOR_DRAW = 1;
+    private static int POINTS_FOR_WIN = 3;
+    private static int POINTS_FOR_DRAW = 1;
 
     private Player player1;
     private Player player2;
 
-    private Integer player1Score;
-    private Integer player2Score;
+    private int player1Score;
+    private int player2Score;
 
     DashBoard(Players players) {
         player1 = players.getPlayer(0);
@@ -27,7 +27,7 @@ public class DashBoard {
     }
 
     boolean isWinner() {
-       return !player1Score.equals(player2Score);
+       return !(player1Score == player2Score);
     }
 
     public String getWinner() {
@@ -38,8 +38,8 @@ public class DashBoard {
 
     public String getWinnerPoints() {
         if(player1Score > player2Score)
-            return player1Score.toString();
-        return player2Score.toString();
+            return String.valueOf(player1Score);
+        return String.valueOf(player2Score);
     }
     public String getLoser() {
         if(player1Score < player2Score)
@@ -49,8 +49,8 @@ public class DashBoard {
 
     public String getLoserPoints() {
         if(player1Score < player2Score)
-            return player1Score.toString();
-        return player2Score.toString();
+            return String.valueOf(player1Score);
+        return String.valueOf(player2Score);
     }
 
     public void addDrawPoints() {

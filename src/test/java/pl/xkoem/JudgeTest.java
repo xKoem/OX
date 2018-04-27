@@ -77,6 +77,16 @@ public class JudgeTest {
         assertTrue(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 8));
     }
 
+    @Test
+    public void testDecreasingDiagonal_OtherTry_whenShouldBeCorrect() {
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 8);
+        gameBoard.setSymbolAtPosition(Symbol.X, 4);
+        gameBoard.setSymbolAtPosition(Symbol.X, 0);
+
+        assertTrue(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 0));
+    }
+
 
 
 
@@ -112,6 +122,50 @@ public class JudgeTest {
 
         assertTrue(judge.checkIncreasingDiagonal(gameBoard, 7));
     }
+
+
+    @Test
+    public void testIncreasingDiagonal_onBigBoardWhenIsSmallDiagonalToTest_whenShouldBeCorrect() {
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(6, 6, 3), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 12);
+        gameBoard.setSymbolAtPosition(Symbol.X, 7);
+        gameBoard.setSymbolAtPosition(Symbol.X, 2);
+
+        assertTrue(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, 2));
+    }
+
+
+
+    @Test
+    public void testDecreasingDiagonal_onBigBoardWhenIsSmallDiagonalToTest_whenShouldBeCorrect() {
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(6, 6, 3), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 3);
+        gameBoard.setSymbolAtPosition(Symbol.X, 10);
+        gameBoard.setSymbolAtPosition(Symbol.X, 17);
+
+        assertTrue(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 10));
+    }
+
+    @Test
+    public void testIncreasingDiagonal_on_3x3_board_shouldReturnFalse() {
+
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 1);
+        gameBoard.setSymbolAtPosition(Symbol.O, 0);
+
+        assertFalse(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, 1));
+    }
+
+    @Test
+    public void testDecreasingDiagonal_on_3x3_board_shouldReturnFalse() {
+
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 1);
+        gameBoard.setSymbolAtPosition(Symbol.O, 0);
+
+        assertFalse(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 1));
+    }
+
 
 
 }

@@ -2,10 +2,10 @@ package pl.xkoem;
 
 public class Judge {
 
-    public Integer emptySlotsOnBoard;
-    private Integer signsToWin;
+    private int emptySlotsOnBoard;
+    private int signsToWin;
 
-    public Judge(Integer boardSize, Integer signsToWin) {
+    public Judge(int boardSize, int signsToWin) {
         this.emptySlotsOnBoard = boardSize;
         this.signsToWin = signsToWin;
     }
@@ -16,107 +16,106 @@ public class Judge {
 
     public boolean checkNewPosition(GameBoard gameBoard) {
         emptySlotsOnBoard--;
-        //todo some magic
-        Integer newestPosition = gameBoard.getNewestPosition();
+        int newestPosition = gameBoard.getNewestPosition();
         if(newestPosition == -1) {
             return false;
         }
-        return checkVertical(gameBoard, newestPosition) || checkHorizontal(gameBoard, newestPosition)
-                || checkDecreasingDiagonal(gameBoard,newestPosition) || checkIncreasingDiagonal(gameBoard,newestPosition);
+
+        return checkVertical(gameBoard, newestPosition) ||
+                checkHorizontal(gameBoard,newestPosition) ||
+                checkDecreasingDiagonal(gameBoard,newestPosition) ||
+                checkIncreasingDiagonal(gameBoard,newestPosition);
     }
 
-    boolean checkVertical(GameBoard gameBoard, Integer newestPosition) {
-        Integer[] position = gameBoard.translatePositionToCoordinates(newestPosition);
+    boolean checkVertical(GameBoard gameBoard, int newestPosition) {
         Symbol symbol = gameBoard.getSymbolAtPosition(newestPosition);
-        Integer signsCounter = signsToWin;
+        int signsCounter = 0;
 
-        for(int i = 0; i < gameBoard.getHeight(); i++) {
-            if(symbol.equals(gameBoard.getSymbolAtPosition(position[0], i))) {
-                signsCounter--;
+        for(int position = newestPosition%gameBoard.getWidth(); position < gameBoard.boardSize(); position += gameBoard.getWidth()) {
+            if(symbol.equals(gameBoard.getSymbolAtPosition(position))) {
+                signsCounter++;
             } else {
-                signsCounter = signsToWin;
+                signsCounter = 0;
             }
-            if(signsCounter <= 0) {
+            if(signsCounter >= signsToWin) {
                 return true;
             }
         }
         return false;
     }
 
-    boolean checkHorizontal(GameBoard gameBoard, Integer newestPosition) {
-        Integer[] position = gameBoard.translatePositionToCoordinates(newestPosition);
+    boolean checkHorizontal(GameBoard gameBoard, int newestPosition) {
         Symbol symbol = gameBoard.getSymbolAtPosition(newestPosition);
-        Integer signsCounter = signsToWin;
+        int signsCounter = 0;
+
+        int position = newestPosition - (newestPosition%gameBoard.getWidth());
 
         for(int i = 0; i < gameBoard.getWidth(); i++) {
-            if(symbol.equals(gameBoard.getSymbolAtPosition(i, position[1]))) {
-                signsCounter--;
+            if(symbol.equals(gameBoard.getSymbolAtPosition(position))) {
+                signsCounter++;
             } else {
-                signsCounter = signsToWin;
+                signsCounter = 0;
             }
-            if(signsCounter <= 0) {
+            if(signsCounter >= signsToWin) {
                 return true;
             }
+            position++;
         }
+
         return false;
     }
 
-    boolean checkDecreasingDiagonal(GameBoard gameBoard, Integer newestPosition) {
-        Integer[] position = gameBoard.translatePositionToCoordinates(newestPosition);
+    boolean checkDecreasingDiagonal(GameBoard gameBoard, int newestPosition) {
+
         Symbol symbol = gameBoard.getSymbolAtPosition(newestPosition);
-        Integer signsCounter = signsToWin;
+        int signsCounter = 0;
+        int position = newestPosition;
 
-        Integer minValue = position[0] < position[1]? position[0]:position[1];
-
-        Integer[] startingPosition = new Integer[]{position[0]-minValue, position[1]- minValue};
-
-        for(int i = 0;
-            i < ((gameBoard.getWidth() < gameBoard.getHeight())? gameBoard.getWidth(): gameBoard.getHeight());
-                i++) {
-
-            if(symbol.equals(gameBoard.getSymbolAtPosition(startingPosition[0], startingPosition[1]))) {
-                signsCounter--;
+        while(!(position < gameBoard.getWidth() || position % gameBoard.getWidth() == 0)) {
+            position -= (gameBoard.getWidth() + 1);
+        }
+        while(position <= gameBoard.boardSize()) {
+            if (symbol.equals(gameBoard.getSymbolAtPosition(position))) {
+                signsCounter++;
             } else {
-                signsCounter = signsToWin;
+                signsCounter = 0;
             }
-            if(signsCounter <= 0) {
+            if (signsCounter >= signsToWin) {
                 return true;
             }
-            startingPosition[0]++;
-            startingPosition[1]++;
+            if( position%gameBoard.getWidth() == (gameBoard.getWidth()-1))
+                return false;
+
+            position += (gameBoard.getWidth() + 1);
         }
+
         return false;
     }
 
 
-    boolean checkIncreasingDiagonal(GameBoard gameBoard, Integer newestPosition) {
-        Integer[] position = gameBoard.translatePositionToCoordinates(newestPosition);
+    boolean checkIncreasingDiagonal(GameBoard gameBoard, int newestPosition) {
         Symbol symbol = gameBoard.getSymbolAtPosition(newestPosition);
-        Integer signsCounter = signsToWin;
+        int signsCounter = 0;
+        int position = newestPosition;
 
-        Integer diagonalNumber = position[0] + position[1];
-
-        Integer[] startingPosition;
-        if(diagonalNumber < gameBoard.getWidth()) {
-            startingPosition = new Integer[]{diagonalNumber, 0};
-        } else {
-            startingPosition = new Integer[]{gameBoard.getWidth() - 1, diagonalNumber - gameBoard.getWidth() + 1};
+        while(!(position <= gameBoard.getWidth() || position % gameBoard.getWidth() == (gameBoard.getWidth()-1))) {
+            position -= (gameBoard.getWidth() - 1);
         }
 
-        for(int i = 0;
-            i < ((gameBoard.getWidth() < gameBoard.getHeight())? gameBoard.getWidth(): gameBoard.getHeight());
-            i++) {
-            if(symbol.equals(gameBoard.getSymbolAtPosition(startingPosition[0], startingPosition[1]))) {
-                signsCounter--;
+        while(position <= gameBoard.boardSize()) {
+            if (symbol.equals(gameBoard.getSymbolAtPosition(position))) {
+                signsCounter++;
             } else {
-                signsCounter = signsToWin;
+                signsCounter = 0;
             }
-            if(signsCounter <= 0) {
+            if (signsCounter >= signsToWin) {
                 return true;
             }
-            startingPosition[0]--;
-            startingPosition[1]++;
+            if(position % gameBoard.getWidth() == 0)
+                return false;
+            position += (gameBoard.getWidth() - 1);
         }
+
         return false;
     }
 

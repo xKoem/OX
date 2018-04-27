@@ -28,19 +28,19 @@ public class GameBoardTests {
 
     @Test
     public void checkTranslatePosition() {
-        assertEquals(gameBoard.translatePositionToCoordinates(5), new Integer[]{2,1});
-        assertEquals(gameBoard.translatePositionToCoordinates(1), new Integer[]{1,0});
-        assertEquals(gameBoard.translatePositionToCoordinates(0), new Integer[]{0,0});
-        assertEquals(gameBoard.translatePositionToCoordinates(8), new Integer[]{2,2});
+        assertEquals(gameBoard.translatePositionToCoordinates(5), new int[]{2,1});
+        assertEquals(gameBoard.translatePositionToCoordinates(1), new int[]{1,0});
+        assertEquals(gameBoard.translatePositionToCoordinates(0), new int[]{0,0});
+        assertEquals(gameBoard.translatePositionToCoordinates(8), new int[]{2,2});
     }
 
     @Test
     public void checkGetArrayPosition() {
-        assertEquals(gameBoard.translateCoordinatesToPosition(1,0), new Integer(1));
-        assertEquals(gameBoard.translateCoordinatesToPosition(2,1), new Integer(5));
-        assertEquals(gameBoard.translateCoordinatesToPosition(1,1), new Integer(4));
-        assertEquals(gameBoard.translateCoordinatesToPosition(2,2), new Integer(8));
-        assertEquals(gameBoard.translateCoordinatesToPosition(0,0), new Integer(0));
+        assertEquals(gameBoard.translateCoordinatesToPosition(1,0), 1);
+        assertEquals(gameBoard.translateCoordinatesToPosition(2,1), 5);
+        assertEquals(gameBoard.translateCoordinatesToPosition(1,1), 4);
+        assertEquals(gameBoard.translateCoordinatesToPosition(2,2), 8);
+        assertEquals(gameBoard.translateCoordinatesToPosition(0,0), 0);
     }
 
     @Test

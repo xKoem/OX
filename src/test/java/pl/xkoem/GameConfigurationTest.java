@@ -62,7 +62,7 @@ public class GameConfigurationTest {
 
     @Test
     public void testBoardSizeFromDefaultGameConfiguration() {
-        Assert.assertEquals(gameConfiguration.getBoardSize(), new Integer[]{3,3});
+        Assert.assertEquals(gameConfiguration.getBoardSize(), new int[]{3,3});
     }
 
 
