@@ -32,17 +32,18 @@ public class Match {
     public void begin(Player player, DashBoard dashBoard) {
         counter++;
         GameBoard gameBoard = new GameBoard(gameConfiguration,userOutput);
-        Judge judge = new Judge(gameBoard.boardSize());
+        Judge judge = new Judge(gameBoard.boardSize(), gameConfiguration.getSymbolsToWin());
         do {
             player = players.getOppositePlayer(player);
             Turn turn = new Turn(userOutput, userInput, player, gameBoard);
             turn.run();
-            judge.checkNewPosition(gameBoard);
-        }while(!judge.isMatchFinished());
+        } while(!judge.isMatchFinished() &&
+                !judge.checkNewPosition(gameBoard));
 
-        Player winner = player; //todo set real winner
-        dashBoard.addPointsToWinner(player);
-        userOutput.accept("Koniec meczu. Zwyciezca: " + player.getName());
+
+        Player winner = players.getPlayerWithSymbol(gameBoard.getSymbolAtPosition(gameBoard.getNewestPosition())); //todo make it prettier
+        dashBoard.addPointsToWinner(winner);
+        userOutput.accept("Koniec meczu. Zwyciezca: " + winner.getName());
     }
 
     public boolean isFinished() {

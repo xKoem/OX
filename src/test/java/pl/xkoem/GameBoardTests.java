@@ -1,25 +1,53 @@
 package pl.xkoem;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class GameBoardTests {
 
     GameBoard gameBoard;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUpDefaultBoard() {
-        gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard = new GameBoard(new GameConfiguration(3,3,3), System.out::println);
     }
 
     @Test
     public void checkValidPositionsForDefaultBoard() {
-        Assert.assertTrue(gameBoard.isPositionValid(1));
+        assertTrue(gameBoard.isPositionValid(1));
     }
 
     @Test
     public void checkInvalidPositionForDefaultBoard() {
-        Assert.assertFalse(gameBoard.isPositionValid(-1));
+        assertFalse(gameBoard.isPositionValid(-1));
     }
+
+    @Test
+    public void checkTranslatePosition() {
+        assertEquals(gameBoard.translatePositionToCoordinates(5), new Integer[]{2,1});
+        assertEquals(gameBoard.translatePositionToCoordinates(1), new Integer[]{1,0});
+        assertEquals(gameBoard.translatePositionToCoordinates(0), new Integer[]{0,0});
+        assertEquals(gameBoard.translatePositionToCoordinates(8), new Integer[]{2,2});
+    }
+
+    @Test
+    public void checkGetArrayPosition() {
+        assertEquals(gameBoard.translateCoordinatesToPosition(1,0), new Integer(1));
+        assertEquals(gameBoard.translateCoordinatesToPosition(2,1), new Integer(5));
+        assertEquals(gameBoard.translateCoordinatesToPosition(1,1), new Integer(4));
+        assertEquals(gameBoard.translateCoordinatesToPosition(2,2), new Integer(8));
+        assertEquals(gameBoard.translateCoordinatesToPosition(0,0), new Integer(0));
+    }
+
+    @Test
+    public void checkWhenAddingSignAtPosition_thenGetSameObject() {
+        gameBoard.setSymbolAtPosition(Symbol.X, 2);
+        assertEquals(gameBoard.getSymbolAtPosition(2,0), Symbol.X);
+    }
+
+
 }
