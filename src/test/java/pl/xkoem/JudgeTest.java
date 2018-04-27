@@ -41,7 +41,7 @@ public class JudgeTest {
         gameBoard.setSymbolAtPosition(Symbol.O, 5);
         gameBoard.setSymbolAtPosition(Symbol.X, 7);
 
-        assertTrue(judgeWithBoardSize9.checkVertical(gameBoard));
+        assertTrue(judgeWithBoardSize9.checkVertical(gameBoard, 7));
     }
 
 
@@ -52,7 +52,7 @@ public class JudgeTest {
         gameBoard.setSymbolAtPosition(Symbol.X, 7);
         gameBoard.setSymbolAtPosition(Symbol.X, 8);
 
-        assertTrue(judgeWithBoardSize9.checkHorizontal(gameBoard));
+        assertTrue(judgeWithBoardSize9.checkHorizontal(gameBoard, 8));
     }
 
 
@@ -67,6 +67,51 @@ public class JudgeTest {
         assertTrue(judgeWithBoardSize9.checkNewPosition(gameBoard));
     }
 
+    @Test
+    public void testDecreasingDiagonal_whenShouldBeCorrect() {
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 0);
+        gameBoard.setSymbolAtPosition(Symbol.X, 4);
+        gameBoard.setSymbolAtPosition(Symbol.X, 8);
+
+        assertTrue(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 8));
+    }
+
+
+
+
+    @Test
+    public void testDecreasingDiagonal_onNotSquaredBoard_whenShouldBeCorrect() {
+        Judge judge = new Judge(15, 3);
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(3, 5, 3), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 6);
+        gameBoard.setSymbolAtPosition(Symbol.X, 10);
+        gameBoard.setSymbolAtPosition(Symbol.X, 14);
+
+        assertTrue(judge.checkDecreasingDiagonal(gameBoard, 10));
+    }
+
+    @Test
+    public void testIncreasingDiagonal_whenShouldBeCorrect() {
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 6);
+        gameBoard.setSymbolAtPosition(Symbol.X, 4);
+        gameBoard.setSymbolAtPosition(Symbol.X, 2);
+
+        assertTrue(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, 4));
+    }
+
+    @Test
+    public void testIncreasingDiagonal_onNotSquaredBoard_whenShouldBeCorrect() {
+        Judge judge = new Judge(15, 3);
+
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(3, 5, 3), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 9);
+        gameBoard.setSymbolAtPosition(Symbol.X, 7);
+        gameBoard.setSymbolAtPosition(Symbol.X, 5);
+
+        assertTrue(judge.checkIncreasingDiagonal(gameBoard, 7));
+    }
 
 
 }

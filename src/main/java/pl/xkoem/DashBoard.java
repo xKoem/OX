@@ -3,6 +3,7 @@ package pl.xkoem;
 public class DashBoard {
 
     private static Integer POINTS_FOR_WIN = 3;
+    private static Integer POINTS_FOR_DRAW = 1;
 
     private Player player1;
     private Player player2;
@@ -50,5 +51,10 @@ public class DashBoard {
         if(player1Score < player2Score)
             return player1Score.toString();
         return player2Score.toString();
+    }
+
+    public void addDrawPoints() {
+        player1Score += POINTS_FOR_DRAW;
+        player2Score += POINTS_FOR_DRAW;
     }
 }
