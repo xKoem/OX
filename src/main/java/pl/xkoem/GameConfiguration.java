@@ -5,7 +5,7 @@ import java.security.InvalidParameterException;
 public class GameConfiguration {
 
     private Integer sizeX;
-    private Integer signsToWin;
+    private Integer symbolsToWin;
     private Integer sizeY;
     private String language;
 
@@ -13,23 +13,23 @@ public class GameConfiguration {
         this(3,3,3);
     }
 
-    GameConfiguration(Integer sizeX, Integer sizeY, Integer signsToWin) {
-        setBoardSettings(sizeX, sizeY, signsToWin);
+    GameConfiguration(Integer sizeX, Integer sizeY, Integer symbolsToWin) {
+        setBoardSettings(sizeX, sizeY, symbolsToWin);
         setLanguage("pl");
     }
 
-    public void setBoardSettings(Integer sizeX, Integer sizeY, Integer charsToWin) throws InvalidParameterException {
-        if(charsToWin > sizeX || charsToWin > sizeY) {
-            throw new InvalidParameterException("Not possible to win on board <"+sizeX+"/"+sizeY+"> when amount of charts to win is specified to " + charsToWin);
+    public void setBoardSettings(Integer sizeX, Integer sizeY, Integer symbolsToWin) throws InvalidParameterException {
+        if(symbolsToWin > sizeX || symbolsToWin > sizeY) {
+            throw new InvalidParameterException("Not possible to win on board <"+sizeX+"/"+sizeY+"> when amount of charts to win is specified to " + symbolsToWin);
         }
 
-        if(charsToWin < 3) {
-            throw new InvalidParameterException("Too low value of chars to win: " + charsToWin + "should be greater than 2");
+        if(symbolsToWin < 3) {
+            throw new InvalidParameterException("Too low value of chars to win: " + symbolsToWin + "should be greater than 2");
         }
 
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.signsToWin = charsToWin;
+        this.symbolsToWin = symbolsToWin;
     }
 
     public void setLanguage(String language) {
@@ -41,7 +41,7 @@ public class GameConfiguration {
         return new Integer[]{sizeX, sizeY};
     }
 
-    public Integer getSignsToWin() {
-        return signsToWin;
+    public Integer getSymbolsToWin() {
+        return symbolsToWin;
     }
 }

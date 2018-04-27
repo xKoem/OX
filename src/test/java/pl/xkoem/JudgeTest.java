@@ -23,7 +23,7 @@ public class JudgeTest {
     }
 
     @Test
-    public void testIfMatchIsFinished_WhenNineCheckingsTookPlace_shouldReturnTrue() {
+    public void testIfMatchIsFinished_When_9_CheckingsTookPlace_shouldReturnTrue() {
         for(int i = 0; i < 9; i++) {
             judgeWithBoardSize9.checkNewPosition(new GameBoard(new GameConfiguration(), System.out::println));
         }
@@ -57,7 +57,7 @@ public class JudgeTest {
 
 
     @Test
-    public void testCheckNewPosition() {
+    public void testCheckNewPositionWhenIsHorizontal() {
 
         GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 6);

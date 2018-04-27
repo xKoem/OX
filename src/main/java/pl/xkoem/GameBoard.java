@@ -1,7 +1,5 @@
 package pl.xkoem;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
 import java.security.InvalidParameterException;
 import java.util.function.Consumer;
 
@@ -61,20 +59,20 @@ public class GameBoard {
         return boardSymbols.length;
     }
 
-    Integer[] translate(Integer position) {
+    Integer[] translatePositionToCoordinates(Integer position) {
         Integer positions[] = new Integer[2];
         positions[1] = (position/width);
         positions[0] = position - (position/width) * width;
         return positions;
     }
 
-    Integer getArrayPosition(Integer x, Integer y) {
+    Integer translateCoordinatesToPosition(Integer x, Integer y) {
         return y * width + x;
     }
 
 
     Symbol getSymbolAtPosition(Integer x, Integer y) {
-        Integer position = getArrayPosition(x,y);
+        Integer position = translateCoordinatesToPosition(x,y);
         if(position >= boardSymbols.length || position < 0) {
             return null; //todo throw error
         }

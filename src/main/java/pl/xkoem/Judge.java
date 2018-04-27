@@ -26,7 +26,7 @@ public class Judge {
         if(newestPosition == -1) {
             return false;
         }
-        Integer[] position = gameBoard.translate(newestPosition);
+        Integer[] position = gameBoard.translatePositionToCoordinates(newestPosition);
         Symbol symbol = gameBoard.getSymbolAtPosition(newestPosition);
         Integer signsCounter = signsToWin;
 
@@ -48,7 +48,7 @@ public class Judge {
         if(newestPosition == -1) {
             return false;
         }
-        Integer[] position = gameBoard.translate(newestPosition);
+        Integer[] position = gameBoard.translatePositionToCoordinates(newestPosition);
         Symbol symbol = gameBoard.getSymbolAtPosition(newestPosition);
         Integer signsCounter = signsToWin;
 
