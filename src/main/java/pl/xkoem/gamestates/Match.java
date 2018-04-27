@@ -37,13 +37,20 @@ public class Match {
             player = players.getOppositePlayer(player);
             Turn turn = new Turn(userOutput, userInput, player, gameBoard);
             turn.run();
-        } while(!judge.isMatchFinished() &&
-                !judge.checkNewPosition(gameBoard));
+        } while(! (judge.checkNewPosition(gameBoard)
+                || judge.isMatchFinished()) );
 
+        String winningName;
+        if(!judge.checkNewPosition(gameBoard)) { //no winner
+            dashBoard.addDrawPoints();
+            winningName = "nikt";
+        } else {
+            Player winner = players.getPlayerWithSymbol(gameBoard.getSymbolAtPosition(gameBoard.getNewestPosition())); //todo make it prettier
+            dashBoard.addPointsToWinner(winner);
+            winningName = player.getName();
+        }
 
-        Player winner = players.getPlayerWithSymbol(gameBoard.getSymbolAtPosition(gameBoard.getNewestPosition())); //todo make it prettier
-        dashBoard.addPointsToWinner(winner);
-        userOutput.accept("Koniec meczu. Zwyciezca: " + winner.getName());
+        userOutput.accept("Koniec meczu. Zwyciezca: " + winningName);
     }
 
     public boolean isFinished() {

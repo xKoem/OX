@@ -2,7 +2,7 @@ package pl.xkoem;
 
 public class Judge {
 
-    private Integer emptySlotsOnBoard;
+    public Integer emptySlotsOnBoard;
     private Integer signsToWin;
 
     public Judge(Integer boardSize, Integer signsToWin) {
