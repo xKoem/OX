@@ -13,7 +13,6 @@ public class GameBoard {
     private final Consumer<String> userOutput;
     private Integer newestPosition;
 
-
     public GameBoard(GameConfiguration gameConfiguration, Consumer<String> userOutput) {
         Integer[] boardSize = gameConfiguration.getBoardSize();
         width = boardSize[0];
@@ -80,14 +79,13 @@ public class GameBoard {
             return null; //todo throw error
         }
         return getSymbolAtPosition(position);
-
     }
 
-     Integer getNewestPosition() {
+    public Integer getNewestPosition() {
         return newestPosition;
     }
 
-    Symbol getSymbolAtPosition(Integer position) {
+    public Symbol getSymbolAtPosition(Integer position) {
         return boardSymbols[position];
     }
 
