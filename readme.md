@@ -2,4 +2,4 @@
 --
 Simple OXGame
 
-*To run use just `java -jar OXGame-version.jar`*
+*To run use just `java -jar OXGame-0.4.jar`*
