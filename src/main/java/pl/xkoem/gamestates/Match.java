@@ -32,7 +32,7 @@ public class Match {
     public void begin(Player player, DashBoard dashBoard) {
         counter++;
         GameBoard gameBoard = new GameBoard(gameConfiguration,userOutput);
-        Judge judge = new Judge(gameBoard.boardSize());
+        Judge judge = new Judge(gameBoard.boardSize(), gameConfiguration.getSignsToWin());
         do {
             player = players.getOppositePlayer(player);
             Turn turn = new Turn(userOutput, userInput, player, gameBoard);

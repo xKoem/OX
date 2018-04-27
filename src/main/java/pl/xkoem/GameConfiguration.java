@@ -5,7 +5,7 @@ import java.security.InvalidParameterException;
 public class GameConfiguration {
 
     private Integer sizeX;
-    private Integer charsToWin;
+    private Integer signsToWin;
     private Integer sizeY;
     private String language;
 
@@ -13,8 +13,8 @@ public class GameConfiguration {
         this(3,3,3);
     }
 
-    GameConfiguration(Integer sizeX, Integer sizeY, Integer charsToWin) {
-        setBoardSettings(sizeX, sizeY, charsToWin);
+    GameConfiguration(Integer sizeX, Integer sizeY, Integer signsToWin) {
+        setBoardSettings(sizeX, sizeY, signsToWin);
         setLanguage("pl");
     }
 
@@ -29,7 +29,7 @@ public class GameConfiguration {
 
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.charsToWin = charsToWin;
+        this.signsToWin = charsToWin;
     }
 
     public void setLanguage(String language) {
@@ -39,5 +39,9 @@ public class GameConfiguration {
 
     public Integer[] getBoardSize() {
         return new Integer[]{sizeX, sizeY};
+    }
+
+    public Integer getSignsToWin() {
+        return signsToWin;
     }
 }
