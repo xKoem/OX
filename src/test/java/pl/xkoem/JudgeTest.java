@@ -167,5 +167,44 @@ public class JudgeTest {
     }
 
 
+    @Test
+    public void testDecreasingDiagonal_on_3x3_board_putting_X_onLeftSide_shouldReturnFalse() {
+
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 0);
+        gameBoard.setSymbolAtPosition(Symbol.X, 2);
+
+        assertFalse(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 2));
+    }
+
+    @Test
+    public void testIncreasingDiagonal_on_3x3_board_putting_X_onLeftSide_shouldReturnFalse() {
+
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard.setSymbolAtPosition(Symbol.X, 0);
+        gameBoard.setSymbolAtPosition(Symbol.X, 2);
+
+        assertFalse(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, 2));
+    }
+
+
+    @Test
+    public void testIncreasingDiagonal_on_3x3_board_putting_X_onEveryPosition_shouldReturnFalse() {
+        for(int i = 0; i < 9; i++) {
+            GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+            gameBoard.setSymbolAtPosition(Symbol.X, i);
+            assertFalse(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, i));
+        }
+    }
+
+    @Test
+    public void testDecreasingDiagonal_on_3x3_board_putting_X_onEveryPosition_shouldReturnFalse() {
+        for(int i = 0; i < 9; i++) {
+            GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+            gameBoard.setSymbolAtPosition(Symbol.X, i);
+            assertFalse(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, i));
+
+        }
+    }
 
 }

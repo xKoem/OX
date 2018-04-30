@@ -98,11 +98,11 @@ public class Judge {
         int signsCounter = 0;
         int position = newestPosition;
 
-        while(!(position <= gameBoard.getWidth() || position % gameBoard.getWidth() == (gameBoard.getWidth()-1))) {
+        while(!(position < gameBoard.getWidth() || position % gameBoard.getWidth() == (gameBoard.getWidth()-1))) {
             position -= (gameBoard.getWidth() - 1);
         }
 
-        while(position <= gameBoard.boardSize()) {
+        while(position < gameBoard.boardSize()) {
             if (symbol.equals(gameBoard.getSymbolAtPosition(position))) {
                 signsCounter++;
             } else {
