@@ -1,20 +1,21 @@
 package pl.xkoem;
 
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class JudgeTest {
 
     Judge judgeWithBoardSize9;
+    GameBoard gameBoard;
 
     @BeforeMethod
     public void setUp() {
         judgeWithBoardSize9 = new Judge(9, 3);
+        gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
     }
 
     @Test
@@ -34,7 +35,6 @@ public class JudgeTest {
       @Test
     public void testCheckVerticalShouldReturnTrue() {
 
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 1);
         gameBoard.setSymbolAtPosition(Symbol.O, 2);
         gameBoard.setSymbolAtPosition(Symbol.X, 4);
@@ -47,7 +47,6 @@ public class JudgeTest {
 
     @Test
     public void testCheckHorizontalShouldReturnTrue() {
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 6);
         gameBoard.setSymbolAtPosition(Symbol.X, 7);
         gameBoard.setSymbolAtPosition(Symbol.X, 8);
@@ -59,7 +58,6 @@ public class JudgeTest {
     @Test
     public void testCheckNewPositionWhenIsHorizontal() {
 
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 6);
         gameBoard.setSymbolAtPosition(Symbol.X, 7);
         gameBoard.setSymbolAtPosition(Symbol.X, 8);
@@ -69,7 +67,6 @@ public class JudgeTest {
 
     @Test
     public void testDecreasingDiagonal_whenShouldBeCorrect() {
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 0);
         gameBoard.setSymbolAtPosition(Symbol.X, 4);
         gameBoard.setSymbolAtPosition(Symbol.X, 8);
@@ -79,7 +76,6 @@ public class JudgeTest {
 
     @Test
     public void testDecreasingDiagonal_OtherTry_whenShouldBeCorrect() {
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 8);
         gameBoard.setSymbolAtPosition(Symbol.X, 4);
         gameBoard.setSymbolAtPosition(Symbol.X, 0);
@@ -103,7 +99,6 @@ public class JudgeTest {
 
     @Test
     public void testIncreasingDiagonal_whenShouldBeCorrect() {
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 6);
         gameBoard.setSymbolAtPosition(Symbol.X, 4);
         gameBoard.setSymbolAtPosition(Symbol.X, 2);
@@ -149,7 +144,6 @@ public class JudgeTest {
     @Test
     public void testIncreasingDiagonal_on_3x3_board_shouldReturnFalse() {
 
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 1);
         gameBoard.setSymbolAtPosition(Symbol.O, 0);
 
@@ -159,7 +153,6 @@ public class JudgeTest {
     @Test
     public void testDecreasingDiagonal_on_3x3_board_shouldReturnFalse() {
 
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 1);
         gameBoard.setSymbolAtPosition(Symbol.O, 0);
 
@@ -170,7 +163,6 @@ public class JudgeTest {
     @Test
     public void testDecreasingDiagonal_on_3x3_board_putting_X_onLeftSide_shouldReturnFalse() {
 
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 0);
         gameBoard.setSymbolAtPosition(Symbol.X, 2);
 
@@ -180,7 +172,6 @@ public class JudgeTest {
     @Test
     public void testIncreasingDiagonal_on_3x3_board_putting_X_onLeftSide_shouldReturnFalse() {
 
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
         gameBoard.setSymbolAtPosition(Symbol.X, 0);
         gameBoard.setSymbolAtPosition(Symbol.X, 2);
 

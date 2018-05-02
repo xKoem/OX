@@ -30,7 +30,6 @@ public class Judge {
     boolean checkVertical(GameBoard gameBoard, int newestPosition) {
         Symbol symbol = gameBoard.getSymbolAtPosition(newestPosition);
         int signsCounter = 0;
-
         for(int position = newestPosition%gameBoard.getWidth(); position < gameBoard.boardSize(); position += gameBoard.getWidth()) {
             if(symbol.equals(gameBoard.getSymbolAtPosition(position))) {
                 signsCounter++;
