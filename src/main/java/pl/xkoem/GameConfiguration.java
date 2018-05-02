@@ -4,21 +4,21 @@ import java.security.InvalidParameterException;
 
 public class GameConfiguration {
 
-    private Integer sizeX;
-    private Integer symbolsToWin;
-    private Integer sizeY;
+    private int sizeX;
+    private int symbolsToWin;
+    private int sizeY;
     private String language;
 
     GameConfiguration() {
         this(3,3,3);
     }
 
-    GameConfiguration(Integer sizeX, Integer sizeY, Integer symbolsToWin) {
+    GameConfiguration(int sizeX, int sizeY, int symbolsToWin) {
         setBoardSettings(sizeX, sizeY, symbolsToWin);
         setLanguage("pl");
     }
 
-    public void setBoardSettings(Integer sizeX, Integer sizeY, Integer symbolsToWin) throws InvalidParameterException {
+    public void setBoardSettings(int sizeX, int sizeY, int symbolsToWin) throws InvalidParameterException {
         if(symbolsToWin > sizeX || symbolsToWin > sizeY) {
             throw new InvalidParameterException("Not possible to win on board <"+sizeX+"/"+sizeY+"> when amount of charts to win is specified to " + symbolsToWin);
         }
@@ -37,11 +37,11 @@ public class GameConfiguration {
     }
 
 
-    public Integer[] getBoardSize() {
-        return new Integer[]{sizeX, sizeY};
+    public int[] getBoardSize() {
+        return new int[]{sizeX, sizeY};
     }
 
-    public Integer getSymbolsToWin() {
+    public int getSymbolsToWin() {
         return symbolsToWin;
     }
 }

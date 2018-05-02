@@ -6,17 +6,17 @@ import java.util.function.Consumer;
 public class GameBoard {
 
     private Symbol[] boardSymbols;
-    private final Integer width;
-    private final Integer height;
+    private final int width;
+    private final int height;
     private final Consumer<String> userOutput;
-    private Integer newestPosition;
+    private int newestPosition;
 
     public GameBoard(GameConfiguration gameConfiguration, Consumer<String> userOutput) {
-        Integer[] boardSize = gameConfiguration.getBoardSize();
+        int[] boardSize = gameConfiguration.getBoardSize();
         width = boardSize[0];
         height = boardSize[1];
         this.userOutput = userOutput;
-        Integer numberOfPositions = width * height;
+        int numberOfPositions = width * height;
         boardSymbols = new Symbol[numberOfPositions];
         newestPosition = -1;
     }
@@ -40,13 +40,13 @@ public class GameBoard {
         userOutput.accept(stringBuilder.toString());
     }
 
-    boolean isPositionValid(Integer position) {
+    boolean isPositionValid(int position) {
         if(position < 0 || position > boardSymbols.length -1)
             return false;
         return boardSymbols[position] == null;
     }
 
-    public void setSymbolAtPosition(Symbol symbol, Integer position) throws InvalidParameterException {
+    public void setSymbolAtPosition(Symbol symbol, int position) throws InvalidParameterException {
         if(!isPositionValid(position)) {
             throw new InvalidParameterException("Bad position");
         }
@@ -55,43 +55,43 @@ public class GameBoard {
 
     }
 
-    public Integer boardSize() {
+    public int boardSize() {
         return boardSymbols.length;
     }
 
-    Integer[] translatePositionToCoordinates(Integer position) {
-        Integer positions[] = new Integer[2];
+    int[] translatePositionToCoordinates(int position) {
+        int positions[] = new int[2];
         positions[1] = (position/width);
         positions[0] = position - (position/width) * width;
         return positions;
     }
 
-    Integer translateCoordinatesToPosition(Integer x, Integer y) {
+    int translateCoordinatesToPosition(int x, int y) {
         return y * width + x;
     }
 
 
-    Symbol getSymbolAtPosition(Integer x, Integer y) {
-        Integer position = translateCoordinatesToPosition(x,y);
+    Symbol getSymbolAtPosition(int x, int y) {
+        int position = translateCoordinatesToPosition(x,y);
         if(position >= boardSymbols.length || position < 0) {
             return null; //todo throw error
         }
         return getSymbolAtPosition(position);
     }
 
-    public Integer getNewestPosition() {
+    public int getNewestPosition() {
         return newestPosition;
     }
 
-    public Symbol getSymbolAtPosition(Integer position) {
+    public Symbol getSymbolAtPosition(int position) {
         return boardSymbols[position];
     }
 
-    Integer getWidth() {
+    int getWidth() {
         return width;
     }
 
-    Integer getHeight() {
+    int getHeight() {
         return height;
     }
 }

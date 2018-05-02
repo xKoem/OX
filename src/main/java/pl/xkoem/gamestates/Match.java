@@ -18,7 +18,7 @@ public class Match {
     Consumer<String> userOutput;
     Players players;
     GameConfiguration gameConfiguration;
-    Integer counter;
+    int counter;
 
 
     public Match(Supplier<String> userInput, Consumer<String> userOutput, Players players, GameConfiguration gameConfiguration) {
