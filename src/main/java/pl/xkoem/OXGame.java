@@ -34,7 +34,7 @@ public class OXGame {
         do {
             Player player = players.getPlayer(gameConfiguration.getBeginner());
             gameConfiguration.changeBeginner();
-            match.begin(player, dashBoard);
+            match.run(player, dashBoard);
         } while (!match.isFinished());
 
         EndOfGame endOfGame = new EndOfGame(userOutput, dashBoard);
