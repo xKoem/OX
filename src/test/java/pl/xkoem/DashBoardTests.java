@@ -39,13 +39,13 @@ public class DashBoardTests {
     public void checkIfGettingWinningPlayerName() {
         dashBoard.addPointsToWinner(players.getPlayer(0)); // adding 3 points to p1
 
-        Assert.assertEquals(dashBoard.getWinner(), PLAYER1);
+        Assert.assertEquals(dashBoard.getWinnerName(), PLAYER1);
     }
 
     public void checkIfGettingLosingPlayerName() {
         dashBoard.addPointsToWinner(players.getPlayer(0)); // adding 3 points to p1
 
-        Assert.assertEquals(dashBoard.getLoser(), PLAYER2);
+        Assert.assertEquals(dashBoard.getLoserName(), PLAYER2);
     }
 
 

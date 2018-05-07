@@ -19,8 +19,8 @@ public class EndOfGame {
 
     public void printResults() {
         StringBuilder results = new StringBuilder();
-        results.append("Winner: ").append(dashBoard.getWinner()).append(" points: ").append(dashBoard.getWinnerPoints()).append("\n")
-                .append("Loser: ").append(dashBoard.getLoser()).append(" points: ").append(dashBoard.getLoserPoints()).append("\n");
+        results.append("Winner: ").append(dashBoard.getWinnerName()).append(" points: ").append(dashBoard.getWinnerPoints()).append("\n")
+                .append("Loser: ").append(dashBoard.getLoserName()).append(" points: ").append(dashBoard.getLoserPoints()).append("\n");
         userOutput.accept(results.toString());
     }
 }
