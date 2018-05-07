@@ -56,7 +56,7 @@ public class Match {
 
     }
 
-    private String getPoints(DashBoard dashBoard) {
+    String getPoints(DashBoard dashBoard) {
         HashMap<Symbol, Integer> points = dashBoard.getPoints();
         return "O: " + points.get(Symbol.O) + " X: " + points.get(Symbol.X);
     }
