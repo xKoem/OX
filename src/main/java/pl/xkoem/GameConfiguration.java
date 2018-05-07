@@ -13,6 +13,7 @@ public class GameConfiguration {
     private int symbolsToWin;
     private int sizeY;
     private String language;
+    private Symbol beginner;
 
     public GameConfiguration() {
         this(3,3,3);
@@ -36,6 +37,7 @@ public class GameConfiguration {
         this.sizeY = sizeY;
         this.symbolsToWin = symbolsToWin;
     }
+
 
     public void setLanguage(String language) {
         this.language = language;
@@ -61,6 +63,15 @@ public class GameConfiguration {
         return MIN_X;
     }
 
+    public Symbol getBeginner() {
+        return beginner;
+    }
 
+    public void changeBeginner() {
+        beginner = beginner.getOpponent();
+    }
 
+    public void setBeginner(Symbol symbol) {
+        beginner = symbol;
+    }
 }

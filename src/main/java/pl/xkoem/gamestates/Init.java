@@ -2,6 +2,7 @@ package pl.xkoem.gamestates;
 
 import pl.xkoem.GameConfiguration;
 import pl.xkoem.Players;
+import pl.xkoem.Symbol;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -21,6 +22,7 @@ public class Init {
         this.gameConfiguration = gameConfiguration;
     }
 
+
     public Players askForNames() {
         userOutput.accept("Podaj nazwe gracza O: ");
         String playerO = userInput.get();
@@ -33,7 +35,19 @@ public class Init {
     public GameConfiguration askForConfiguration(GameConfiguration gameConfiguration) {
         askForBoardSettings();
         askForLanguage();
+        askWhoBegins();
         return gameConfiguration;
+    }
+
+    private void askWhoBegins() {
+        while(true) {
+            userOutput.accept("Podaj kto zaczyna O czy X");
+            String userData = userInput.get();
+            if (userData.equals("X") || userData .equals("O")) {
+                gameConfiguration.setBeginner(Symbol.valueOf(userData));
+                return;
+            }
+        }
     }
 
     private void askForLanguage() {
@@ -49,7 +63,6 @@ public class Init {
 
     private int askForMinSymbolsToWin(int maxSymbolsToWin) {
         maxSymbolsToWin = Math.max(maxSymbolsToWin, gameConfiguration.getMinSymbolsToWin());
-
         Optional<Integer> symbolsToWin = Optional.empty();
         while(!symbolsToWin.isPresent()) {
             userOutput.accept("Podaj min ilosc symboli do wygrania");
@@ -118,6 +131,5 @@ public class Init {
         }
         return value;
     }
-
 
 }

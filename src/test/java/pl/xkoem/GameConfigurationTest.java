@@ -65,5 +65,17 @@ public class GameConfigurationTest {
         Assert.assertEquals(gameConfiguration.getBoardSize(), new int[]{3,3});
     }
 
+    @Test
+    public void checkSettingBeginner() {
+        gameConfiguration.setBeginner(Symbol.X);
+        Assert.assertEquals(gameConfiguration.getBeginner(), Symbol.X);
+    }
+
+    @Test
+    public void checkChangingBeginner() {
+        gameConfiguration.setBeginner(Symbol.X);
+        gameConfiguration.changeBeginner();
+        Assert.assertEquals(gameConfiguration.getBeginner(), Symbol.O);
+    }
 
 }
