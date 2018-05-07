@@ -32,27 +32,32 @@ public class DashBoard {
        return !(player1Score == player2Score);
     }
 
-    public String getWinner() {
+    private Player getWinner() {
         if(player1Score > player2Score)
-            return player1.getName();
-        return player2.getName();
+            return player1;
+        return player2;
+    }
+
+    public String getWinnerName() {
+        return getWinner().getName();
     }
 
     public String getWinnerPoints() {
-        if(player1Score > player2Score)
-            return String.valueOf(player1Score);
-        return String.valueOf(player2Score);
+        return String.valueOf(player1Score > player2Score? player1Score:player2Score);
     }
-    public String getLoser() {
+
+    private Player getLoser() {
         if(player1Score < player2Score)
-            return player1.getName();
-        return player2.getName();
+            return player1;
+        return player2;
+    }
+
+    public String getLoserName() {
+        return getLoser().getName();
     }
 
     public String getLoserPoints() {
-        if(player1Score < player2Score)
-            return String.valueOf(player1Score);
-        return String.valueOf(player2Score);
+        return String.valueOf(player1Score < player2Score? player1Score:player2Score);
     }
 
     public void addDrawPoints() {
