@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import java.security.InvalidParameterException;
 
+@Test
 public class GameConfigurationTest {
 
     GameConfiguration gameConfiguration;
@@ -16,7 +17,6 @@ public class GameConfigurationTest {
         isError = false;
     }
 
-    @Test
     public void setBoardSizeValid() {
         Boolean isError = false;
         try {
@@ -27,7 +27,6 @@ public class GameConfigurationTest {
         Assert.assertTrue(!isError);
     }
 
-    @Test
     public void setBoardSizeValid_whenCharToWinIsBiggerThanSizeX_shouldBeFalse() {
         Boolean isError = false;
         try {
@@ -38,7 +37,6 @@ public class GameConfigurationTest {
         Assert.assertTrue(isError);
     }
 
-    @Test
     public void setBoardSizeValid_whenCharToWinIsBiggerThanSizeY_shouldBeFalse() {
         Boolean isError = false;
         try {
@@ -49,7 +47,6 @@ public class GameConfigurationTest {
         Assert.assertTrue(isError);
     }
 
-    @Test
     public void setBoardSizeValid_whenCharToWinIsBiggerThanBothSizes_shouldBeFalse() {
         Boolean isError = false;
         try {
@@ -60,18 +57,15 @@ public class GameConfigurationTest {
         Assert.assertTrue(isError);
     }
 
-    @Test
     public void testBoardSizeFromDefaultGameConfiguration() {
         Assert.assertEquals(gameConfiguration.getBoardSize(), new int[]{3,3});
     }
 
-    @Test
     public void checkSettingBeginner() {
         gameConfiguration.setBeginner(Symbol.X);
         Assert.assertEquals(gameConfiguration.getBeginner(), Symbol.X);
     }
 
-    @Test
     public void checkChangingBeginner() {
         gameConfiguration.setBeginner(Symbol.X);
         gameConfiguration.changeBeginner();
