@@ -44,6 +44,7 @@ public class Match {
         } while(! (judge.checkNewPosition(gameBoard)
                 || judge.isMatchFinished()));
 
+        gameBoard.drawBoard();
         if(!judge.checkNewPosition(gameBoard)) {
             dashBoard.addDrawPoints();
             userOutput.accept("Remis " + getPoints(dashBoard));
