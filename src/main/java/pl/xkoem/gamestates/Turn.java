@@ -13,14 +13,15 @@ class Turn {
     private Player player;
     private GameBoard gameBoard;
     private int newestPosition;
+    private boolean gameQuit;
 
     Turn(Consumer<String> userOutput, Supplier<String> userInput, Player player, GameBoard gameBoard) {
         this.userOutput = userOutput;
         this.userInput = userInput;
         this.player = player;
         this.gameBoard = gameBoard;
+        gameQuit = false;
     }
-
 
     void run() {
         gameBoard.drawBoard();
@@ -30,6 +31,11 @@ class Turn {
     private void setSymbolAtPositionPosition() {
         userOutput.accept(player.getName() + " podaj pole z na ktorym chcesz postawic znak " + player.getSymbol());
         String playerOutputPosition = userInput.get();
+        if (playerOutputPosition.equals("exit")) {
+            gameQuit = true;
+            return;
+        }
+
         try {
             int position = Integer.valueOf(playerOutputPosition);
             gameBoard.setSymbolAtPosition(player.getSymbol(), position);
@@ -38,5 +44,9 @@ class Turn {
             userOutput.accept("Bledne pole, sprobuj jeszcze raz");
             setSymbolAtPositionPosition();
         }
+    }
+
+    public boolean isGameQuit() {
+        return gameQuit;
     }
 }

@@ -4,7 +4,6 @@ import pl.xkoem.gamestates.EndOfGame;
 import pl.xkoem.gamestates.Init;
 import pl.xkoem.gamestates.Match;
 
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -28,13 +27,13 @@ public class OXGame {
     /**
      * Główna metoda uruchamiająca cały proces gry po kolei
      */
-
     void run() {
         initGame();
         Match match = new Match(userInput, userOutput, players, gameConfiguration);
-        Player player = players.getPlayer(0);
         DashBoard dashBoard = new DashBoard(players);
         do {
+            Player player = players.getPlayer(gameConfiguration.getBeginner());
+            gameConfiguration.changeBeginner();
             match.begin(player, dashBoard);
         } while (!match.isFinished());
 
