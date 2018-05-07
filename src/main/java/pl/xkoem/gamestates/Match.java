@@ -13,7 +13,6 @@ public class Match {
      * przy użyciu
      * @param gameConfiguration
      */
-
     Supplier<String> userInput;
     Consumer<String> userOutput;
     Players players;
