@@ -9,7 +9,7 @@ public class PlayerTests {
     public void testAddPlayer() {
         Players players = new Players();
         players.setPlayers("player", "player2");
-        Assert.assertEquals(players.getPlayer(0), new Player("player", Symbol.X));
+        Assert.assertEquals(players.getPlayer(0), new Player("player", Symbol.O));
     }
 
     @Test
