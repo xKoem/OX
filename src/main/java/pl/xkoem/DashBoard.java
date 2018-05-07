@@ -1,5 +1,7 @@
 package pl.xkoem;
 
+import java.util.HashMap;
+
 public class DashBoard {
 
     private static int POINTS_FOR_WIN = 3;
@@ -56,5 +58,12 @@ public class DashBoard {
     public void addDrawPoints() {
         player1Score += POINTS_FOR_DRAW;
         player2Score += POINTS_FOR_DRAW;
+    }
+
+    public HashMap<Symbol, Integer> getPoints() {
+        HashMap<Symbol, Integer> points = new HashMap<>();
+        points.put(player1.getSymbol(), player1Score);
+        points.put(player2.getSymbol(), player2Score);
+        return points;
     }
 }

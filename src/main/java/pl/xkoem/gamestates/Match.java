@@ -2,6 +2,7 @@ package pl.xkoem.gamestates;
 
 import pl.xkoem.*;
 
+import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -28,7 +29,7 @@ public class Match {
         counter = 0;
     }
 
-    public void begin(Player player, DashBoard dashBoard) {
+    public void run(Player player, DashBoard dashBoard) {
         counter++;
         GameBoard gameBoard = new GameBoard(gameConfiguration,userOutput);
         Judge judge = new Judge(gameBoard.boardSize(), gameConfiguration.getSymbolsToWin());
@@ -43,17 +44,20 @@ public class Match {
         } while(! (judge.checkNewPosition(gameBoard)
                 || judge.isMatchFinished()));
 
-        String winningName;
-        if(!judge.checkNewPosition(gameBoard)) { //no winner
+        if(!judge.checkNewPosition(gameBoard)) {
             dashBoard.addDrawPoints();
-            winningName = "nikt";
+            userOutput.accept("Remis " + getPoints(dashBoard));
         } else {
-            Player winner = players.getPlayer(gameBoard.getSymbolAtPosition(gameBoard.getNewestPosition())); //todo make it prettier
+            Player winner = players.getPlayer(gameBoard.getSymbolAtPosition(gameBoard.getNewestPosition()));
             dashBoard.addPointsToWinner(winner);
-            winningName = player.getName();
+            userOutput.accept("Wygrywa " + winner.getSymbol() + ". " + getPoints(dashBoard));
         }
-        userOutput.accept("Koniec meczu. Zwyciezca: " + winningName);
 
+    }
+
+    private String getPoints(DashBoard dashBoard) {
+        HashMap<Symbol, Integer> points = dashBoard.getPoints();
+        return "O: " + points.get(Symbol.O) + " X: " + points.get(Symbol.X);
     }
 
     public boolean isFinished() {

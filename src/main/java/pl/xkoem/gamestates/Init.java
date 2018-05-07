@@ -24,12 +24,19 @@ public class Init {
 
 
     public Players askForNames() {
-        userOutput.accept("Podaj nazwe gracza O: ");
-        String playerO = userInput.get();
-        userOutput.accept("Podaj nazwe gracza X: ");
-        String playerX = userInput.get();
+        String playerO = askForName("O");
+        String playerX = askForName("X");
         players.setPlayers(playerO, playerX);
         return players;
+    }
+
+    private String askForName(String player) {
+        userOutput.accept("Podaj nazwe gracza " + player + ": ");
+        String playerName = "";
+        while (playerName.length() == 0) {
+            playerName = userInput.get();
+        }
+        return playerName;
     }
     
     public GameConfiguration askForConfiguration(GameConfiguration gameConfiguration) {
