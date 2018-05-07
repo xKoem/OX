@@ -20,44 +20,40 @@ public class InitTest {
     }
 
     @Test
-    public void testTryChangeStringToIntWhenNumberIsPresent_shouldReturnThisNumber() {
+    public void testTryChangeStringToInt_whenNumberIsPresent_shouldReturnThisNumber() {
         assertEquals(init.tryChangeStringToInt("1"), Optional.of(1));
     }
 
     @Test
-    public void testTryChangeStringToIntWhenLetterIsPresent_shouldReturnOptionalEmpty() {
+    public void testTryChangeStringToInt_whenLetterIsPresent_shouldReturnOptionalEmpty() {
         assertEquals(init.tryChangeStringToInt("a"), Optional.empty());
     }
 
     @Test
-    public void testTryChangeStringToIntWithMinValue_whenNumberIsLowerThanMinValue_shouldReturnOptionalEmpty() {
+    public void testTryChangeStringToInt_withMinValue_whenNumberIsLowerThanMinValue_shouldReturnOptionalEmpty() {
         assertEquals(init.tryChangeStringToIntWithMinValue("5", 6), Optional.empty());
     }
 
     @Test
-    public void testTryChangeStringToIntWithMinValue_whenNumberISHigherThanMinValue_shouldReturnThisNumber() {
+    public void testTryChangeStringToInt_withMinValue_whenNumberISHigherThanMinValue_shouldReturnThisNumber() {
         assertEquals(init.tryChangeStringToIntWithMinValue("5", 2), Optional.of(5));
     }
 
 
     @Test
-    public void testTryChangeStringToIntWithMinAndMaxValue_whenNumberIsLowerThanMinValue_shouldReturnOptionalEmpty() {
-        assertEquals(init.tryChangeStringToIntWithMinAndMaxValue("5", 6, 8), Optional.empty());
+    public void testTryChangeStringToInt_withMinAndMaxValue_whenNumberIsLowerThanMinValue_shouldReturnOptionalEmpty() {
+        assertEquals(init.tryChangeStringToIntBetweenMinAndMaxValue("5", 6, 8), Optional.empty());
     }
 
     @Test
-    public void testTryChangeStringToIntWithMinAndMaxValue_whenNumberIsHigherThanMinValue_shouldReturnThisNumber() {
-        assertEquals(init.tryChangeStringToIntWithMinAndMaxValue("5", 2,6), Optional.of(5));
+    public void testTryChangeStringToInt_withMinAndMaxValue_whenNumberIsHigherThanMinValue_shouldReturnThisNumber() {
+        assertEquals(init.tryChangeStringToIntBetweenMinAndMaxValue("5", 2,6), Optional.of(5));
     }
 
     @Test
-    public void testTryChangeStringToIntWithMinAndMaxValue_whenNumberIsHigherThanMaxValue_shouldReturnOptionalEmpty() {
-        assertEquals(init.tryChangeStringToIntWithMinAndMaxValue("9", 6, 8), Optional.empty());
+    public void testTryChangeStringToInt_withMinAndMaxValue_whenNumberIsHigherThanMaxValue_shouldReturnOptionalEmpty() {
+        assertEquals(init.tryChangeStringToIntBetweenMinAndMaxValue("9", 6, 8), Optional.empty());
     }
 
-    @Test
-    public void testTryChangeStringToIntWithMinAndMaxValue_whenNumberIsLowerThanMamValue_adnHigherThanMinValue_shouldReturnThisNumber() {
-        assertEquals(init.tryChangeStringToIntWithMinAndMaxValue("5", 2,6), Optional.of(5));
-    }
 }
 

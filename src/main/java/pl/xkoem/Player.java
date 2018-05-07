@@ -10,7 +10,7 @@ public class Player {
     }
 
     @Override
-    public boolean equals(Object object) { //todo upgrade player equals
+    public boolean equals(Object object) {
 
         if(!(object instanceof Player)) {
             return false;

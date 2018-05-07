@@ -54,7 +54,7 @@ public class Init {
         while(!symbolsToWin.isPresent()) {
             userOutput.accept("Podaj min ilosc symboli do wygrania");
             String userData = userInput.get();
-            symbolsToWin = tryChangeStringToIntWithMinAndMaxValue(userData, gameConfiguration.getMinSymbolsToWin() , maxSymbolsToWin);
+            symbolsToWin = tryChangeStringToIntBetweenMinAndMaxValue(userData, gameConfiguration.getMinSymbolsToWin() , maxSymbolsToWin);
         }
         return symbolsToWin.get();
     }
@@ -80,7 +80,6 @@ public class Init {
     }
 
     Optional<Integer> tryChangeStringToIntWithMinValue(String string, int minValue) {
-
         Optional<Integer> value = tryChangeStringToInt(string);
         if (!value.isPresent()) {
             return value;
@@ -92,7 +91,7 @@ public class Init {
         return value;
     }
 
-    Optional<Integer> tryChangeStringToIntWithMinAndMaxValue(String string, int minValue, int maxValue) {
+    Optional<Integer> tryChangeStringToIntBetweenMinAndMaxValue(String string, int minValue, int maxValue) {
         Optional<Integer> value = tryChangeStringToInt(string);
         if (!value.isPresent()) {
             return value;
