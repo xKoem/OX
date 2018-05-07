@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.xkoem</groupId>
-    <artifactId>OXGame</artifactId>
+    <artifactId>OX</artifactId>
     <version>0.4</version>
-    <name>OXGame</name>
+    <name>OX</name>
     <description>Simple OX Game</description>
 
 
