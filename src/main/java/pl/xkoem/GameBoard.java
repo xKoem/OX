@@ -14,8 +14,8 @@ public class GameBoard {
 
     public GameBoard(GameConfiguration gameConfiguration, UserInterface userInterface) {
         int[] boardSize = gameConfiguration.getBoardSize();
-        width = boardSize[0];
-        height = boardSize[1];
+        this.width = boardSize[0];
+        this.height = boardSize[1];
         this.userInterface = userInterface;
         int numberOfPositions = width * height;
         boardSymbols = new Symbol[numberOfPositions];
@@ -30,7 +30,7 @@ public class GameBoard {
 
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
-                String s = String.format( //fixme
+                String s = String.format(
                         boardSymbols[position] == null? "%1$"+(maxSize+2)+"s": "%1$"+(maxSize+2 + 9)+"s" ,
                         boardSymbols[position] == null? position++: boardSymbols[position++]
                 );
