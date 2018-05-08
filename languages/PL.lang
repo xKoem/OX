@@ -6,7 +6,7 @@ SYMBOLS_AMOUNT_QUESTION : Podaj min ilosc symboli do wygrania
 BAD_PARAMETER_SHOULD_BE_NUMBER : Bledny parametr, sprobuj jeszcze raz. Nastepnym razem wez wpisz liczbe...
 TOO_LOW_NUMBER : Za malo ziom
 TOO_HIGH_NUMBER : Za duzo ziom
-PLAYER_MOVE : %player% podaj pole z na ktorym chcesz postawic znak %symbol%
+PLAYER_MOVE : %player% podaj pole z na ktorym chcesz postawic znak %symbol%. Aby zakonczyc gre wpisz exit
 BAD_POSITION : Bledne pole, sprobuj jeszcze raz
 MATCH_DRAW : Remis %points%
 MATCH_WINNER : Wygrywa %player%. %points%

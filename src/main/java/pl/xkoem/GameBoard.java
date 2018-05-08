@@ -71,11 +71,10 @@ public class GameBoard {
         return y * width + x;
     }
 
-
     Symbol getSymbolAtPosition(int x, int y) {
         int position = translateCoordinatesToPosition(x,y);
         if(position >= boardSymbols.length || position < 0) {
-            return null; //todo throw error
+            throw new InvalidParameterException();
         }
         return getSymbolAtPosition(position);
     }

@@ -6,7 +6,7 @@ SYMBOLS_AMOUNT_QUESTION : Specify minimal amount of symbols to win
 BAD_PARAMETER_SHOULD_BE_NUMBER : Bad parameter, try again. Next time try to use a number...
 TOO_LOW_NUMBER : Too low value
 TOO_HIGH_NUMBER : Too high value
-PLAYER_MOVE : %player% where do you wanna place your %symbol%?
+PLAYER_MOVE : %player% where do you wanna place your %symbol%? To exit just enter: exit
 BAD_POSITION : Bad position. Try again.
 MATCH_DRAW : Draw %points%
 MATCH_WINNER : Winner %player%. %points%
