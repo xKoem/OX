@@ -76,20 +76,20 @@ public class Init {
 
     private int askForWidth() {
         Optional<Integer> width = Optional.empty();
-        while(gameConfiguration.getMinX() > width.orElse(0)) {
+        while(gameConfiguration.getMinX() > width.orElse(0) && width.orElse(Integer.MAX_VALUE) > gameConfiguration.getMAX_X()) {
             userInterface.accept(LanguageName.WIDTH_QUESTION);
             String userData = userInterface.get();
-            width = tryChangeStringToIntWithMinValue(userData, gameConfiguration.getMinX());
+            width = tryChangeStringToIntBetweenMinAndMaxValue(userData, gameConfiguration.getMinX(),gameConfiguration.getMAX_X());
         }
         return width.get();
     }
 
     private int askForHeight() {
         Optional<Integer> height = Optional.empty();
-        while(gameConfiguration.getMinY() > height.orElse(0)) {
+        while(gameConfiguration.getMinY() > height.orElse(0) && height.orElse(Integer.MAX_VALUE) > gameConfiguration.getMAX_Y()) {
             userInterface.accept(LanguageName.HEIGHT_QUESTION);
             String userData = userInterface.get();
-            height = tryChangeStringToIntWithMinValue(userData, gameConfiguration.getMinY());
+            height = tryChangeStringToIntBetweenMinAndMaxValue(userData, gameConfiguration.getMinY(), gameConfiguration.getMAX_Y());
         }
         return height.get();
     }

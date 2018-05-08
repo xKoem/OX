@@ -7,6 +7,8 @@ public class GameConfiguration {
 
     private int MIN_X = 3;
     private int MIN_Y = 3;
+    private int MAX_X = 20;
+    private int MAX_Y = 20;
     private int MIN_SYMBOLS_TO_WIN = 3;
 
     private int sizeX;
@@ -73,5 +75,13 @@ public class GameConfiguration {
 
     public void setBeginner(Symbol symbol) {
         beginner = symbol;
+    }
+
+    public int getMAX_X() {
+        return MAX_X;
+    }
+
+    public int getMAX_Y() {
+        return MAX_Y;
     }
 }
