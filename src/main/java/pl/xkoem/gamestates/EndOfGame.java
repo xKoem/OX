@@ -15,11 +15,9 @@ public class EndOfGame {
     }
 
     /**
-     * Pojazuje rezultat calej rozgrywki na podstawie otrzymanego DashBoardu
+     * Pojazuje rezultat calej rozgrywki na podstawie otrzymanej tablicy wynikow
      */
-
     public void printResults() {
-        StringBuilder results = new StringBuilder();
         if (dashBoard.isWinner()) {
             printWinnerResults();
         } else {
