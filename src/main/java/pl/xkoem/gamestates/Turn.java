@@ -28,7 +28,7 @@ class Turn {
     }
 
     private void setSymbolAtPositionPosition() {
-        userInterface.accept(LanguageName.player_move, new ReplacePattern("player", player.getName()), new ReplacePattern("symbol", player.getSymbol().toString()));
+        userInterface.accept(LanguageName.PLAYER_MOVE, new ReplacePattern("player", player.getName()), new ReplacePattern("symbol", player.getSymbol().toString()));
         String playerOutputPosition = userInterface.get();
         if (playerOutputPosition.equals("exit")) {
             gameQuit = true;
@@ -40,7 +40,7 @@ class Turn {
             gameBoard.setSymbolAtPosition(player.getSymbol(), position);
             newestPosition = position;
         } catch (InvalidParameterException|NumberFormatException e) {
-            userInterface.accept(LanguageName.bad_position);
+            userInterface.accept(LanguageName.BAD_POSITION);
             setSymbolAtPositionPosition();
         }
     }

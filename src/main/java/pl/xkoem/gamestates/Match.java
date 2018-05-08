@@ -46,11 +46,11 @@ public class Match {
         gameBoard.drawBoard();
         if(!judge.checkNewPosition(gameBoard)) {
             dashBoard.addDrawPoints();
-            userInterface.accept(LanguageName.match_draw, new ReplacePattern("points", getPoints(dashBoard)));
+            userInterface.accept(LanguageName.MATCH_DRAW, new ReplacePattern("points", getPoints(dashBoard)));
         } else {
             Player winner = players.getPlayer(gameBoard.getSymbolAtPosition(gameBoard.getNewestPosition()));
             dashBoard.addPointsToWinner(winner);
-            userInterface.accept(LanguageName.match_winner, new ReplacePattern("player", winner.getSymbol().toString()), new ReplacePattern("points", getPoints(dashBoard)));
+            userInterface.accept(LanguageName.MATCH_WINNER, new ReplacePattern("player", winner.getSymbol().toString()), new ReplacePattern("points", getPoints(dashBoard)));
         }
 
     }

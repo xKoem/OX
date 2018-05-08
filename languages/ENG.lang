@@ -1,14 +1,14 @@
-player_name_question : Select player name %symbol%
-starting_player_question : Who goes first O or X?
-width_question : Specify board width
-height_question : Specify board height
-symbols_amount_question : Specify minimal amount of symbols to win
-bad_parameter_should_be_number : Bad parameter, try again. Next time try to use a number...
-too_low_number : Too low value
-too_high_number : Too high value
-player_move : %player% where do you wanna place your %symbol%?
-bad_position : Bad position. Try again.
-match_draw : Draw %points%
-match_winner : Winner %player%. %points%
-game_winner : Winner: %winner% points: %winner_points% \nLoser: %loser% points: %loser_points%\n
-game_draw : Draw! Points: %points%
+PLAYER_NAME_QUESTION : Select player name %symbol%
+STARTING_PLAYER_QUESTION : Who goes first O or X?
+WIDTH_QUESTION : Specify board width
+HEIGHT_QUESTION : Specify board height
+SYMBOLS_AMOUNT_QUESTION : Specify minimal amount of symbols to win
+BAD_PARAMETER_SHOULD_BE_NUMBER : Bad parameter, try again. Next time try to use a number...
+TOO_LOW_NUMBER : Too low value
+TOO_HIGH_NUMBER : Too high value
+PLAYER_MOVE : %player% where do you wanna place your %symbol%?
+BAD_POSITION : Bad position. Try again.
+MATCH_DRAW : Draw %points%
+MATCH_WINNER : Winner %player%. %points%
+GAME_WINNER : Winner: %winner% points: %winner_points% \nLoser: %loser% points: %loser_points%\n
+GAME_DRAW : Draw! Points: %points%

@@ -28,11 +28,11 @@ public class EndOfGame {
     }
 
     private void printDrawResults() {
-        userInterface.accept(LanguageName.game_draw, new ReplacePattern("points", dashBoard.getWinnerPoints()));
+        userInterface.accept(LanguageName.GAME_DRAW, new ReplacePattern("points", dashBoard.getWinnerPoints()));
     }
 
     private void printWinnerResults() {
-        userInterface.accept(LanguageName.game_winner,
+        userInterface.accept(LanguageName.GAME_WINNER,
                 new ReplacePattern("winner", dashBoard.getWinnerName()),
                 new ReplacePattern("winner_points", dashBoard.getWinnerPoints()),
                 new ReplacePattern("loser", dashBoard.getLoserName()),

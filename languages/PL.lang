@@ -1,14 +1,14 @@
-player_name_question : Podaj nazwe gracza %symbol%
-starting_player_question : Podaj kto zaczyna O czy X
-width_question : Podaj szerokosc planszy
-height_question : Podaj wysokosc planszy
-symbols_amount_question : Podaj min ilosc symboli do wygrania
-bad_parameter_should_be_number : Bledny parametr, sprobuj jeszcze raz. Nastepnym razem wez wpisz liczbe...
-too_low_number : Za malo ziom
-too_high_number : Za duzo ziom
-player_move : %player% podaj pole z na ktorym chcesz postawic znak %symbol%
-bad_position : Bledne pole, sprobuj jeszcze raz
-match_draw : Remis %points%
-match_winner : Wygrywa %player%. %points%
-game_winner : Zwyciezca: %winner% punkty: %winner_points% \nPrzegrany: %loser% punkty: %loser_points%\n
-game_draw : Remis! Zdobye punkty: %points%
+PLAYER_NAME_QUESTION : Podaj nazwe gracza %symbol%
+STARTING_PLAYER_QUESTION : Podaj kto zaczyna O czy X
+WIDTH_QUESTION : Podaj szerokosc planszy
+HEIGHT_QUESTION : Podaj wysokosc planszy
+SYMBOLS_AMOUNT_QUESTION : Podaj min ilosc symboli do wygrania
+BAD_PARAMETER_SHOULD_BE_NUMBER : Bledny parametr, sprobuj jeszcze raz. Nastepnym razem wez wpisz liczbe...
+TOO_LOW_NUMBER : Za malo ziom
+TOO_HIGH_NUMBER : Za duzo ziom
+PLAYER_MOVE : %player% podaj pole z na ktorym chcesz postawic znak %symbol%
+BAD_POSITION : Bledne pole, sprobuj jeszcze raz
+MATCH_DRAW : Remis %points%
+MATCH_WINNER : Wygrywa %player%. %points%
+GAME_WINNER : Zwyciezca: %winner% punkty: %winner_points% \nPrzegrany: %loser% punkty: %loser_points%\n
+GAME_DRAW : Remis! Zdobye punkty: %points%

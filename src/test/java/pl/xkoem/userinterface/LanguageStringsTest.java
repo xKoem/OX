@@ -18,7 +18,7 @@ public class LanguageStringsTest {
 
     public void testAddLanguageString() {
         LanguageStrings languageStrings = new LanguageStrings();
-        languageStrings.add(LanguageName.too_low_number, testingString);
-        Assert.assertEquals(languageStrings.get(LanguageName.too_low_number), testingString);
+        languageStrings.add(LanguageName.TOO_LOW_NUMBER, testingString);
+        Assert.assertEquals(languageStrings.get(LanguageName.TOO_LOW_NUMBER), testingString);
     }
 }

@@ -30,7 +30,7 @@ public class Init {
     }
 
     private String askForName(String player) {
-        userInterface.accept(LanguageName.player_name_question, new ReplacePattern("symbol", player));
+        userInterface.accept(LanguageName.PLAYER_NAME_QUESTION, new ReplacePattern("symbol", player));
         String playerName = "";
         while (playerName.length() == 0) {
             playerName = userInterface.get();
@@ -46,7 +46,7 @@ public class Init {
 
     private void askWhoBegins() {
         while(true) {
-            userInterface.accept(LanguageName.starting_player_question);
+            userInterface.accept(LanguageName.STARTING_PLAYER_QUESTION);
             String userData = userInterface.get();
             if (userData.equals("X") || userData .equals("O")) {
                 gameConfiguration.setBeginner(Symbol.valueOf(userData));
@@ -66,7 +66,7 @@ public class Init {
         maxSymbolsToWin = Math.max(maxSymbolsToWin, gameConfiguration.getMinSymbolsToWin());
         Optional<Integer> symbolsToWin = Optional.empty();
         while(!symbolsToWin.isPresent()) {
-            userInterface.accept(LanguageName.symbols_amount_question);
+            userInterface.accept(LanguageName.SYMBOLS_AMOUNT_QUESTION);
             String userData = userInterface.get();
             symbolsToWin = tryChangeStringToIntBetweenMinAndMaxValue(userData, gameConfiguration.getMinSymbolsToWin() , maxSymbolsToWin);
         }
@@ -76,7 +76,7 @@ public class Init {
     private int askForWidth() {
         Optional<Integer> width = Optional.empty();
         while(gameConfiguration.getMinX() > width.orElse(0)) {
-            userInterface.accept(LanguageName.width_question);
+            userInterface.accept(LanguageName.WIDTH_QUESTION);
             String userData = userInterface.get();
             width = tryChangeStringToIntWithMinValue(userData, gameConfiguration.getMinX());
         }
@@ -86,7 +86,7 @@ public class Init {
     private int askForHeight() {
         Optional<Integer> height = Optional.empty();
         while(gameConfiguration.getMinY() > height.orElse(0)) {
-            userInterface.accept(LanguageName.height_question);
+            userInterface.accept(LanguageName.HEIGHT_QUESTION);
             String userData = userInterface.get();
             height = tryChangeStringToIntWithMinValue(userData, gameConfiguration.getMinY());
         }
@@ -99,7 +99,7 @@ public class Init {
             return value;
         }
         if(value.get() < minValue) {
-            userInterface.accept(LanguageName.too_low_number);
+            userInterface.accept(LanguageName.TOO_LOW_NUMBER);
             return Optional.empty();
         }
         return value;
@@ -111,11 +111,11 @@ public class Init {
             return value;
         }
         if(value.get() < minValue) {
-            userInterface.accept(LanguageName.too_low_number);
+            userInterface.accept(LanguageName.TOO_LOW_NUMBER);
             return Optional.empty();
         }
         if(value.get() > maxValue) {
-            userInterface.accept(LanguageName.too_high_number);
+            userInterface.accept(LanguageName.TOO_HIGH_NUMBER);
             return Optional.empty();
         }
         return value;
@@ -127,7 +127,7 @@ public class Init {
             Integer intValue = Integer.valueOf(string);
             value = Optional.of(intValue);
         } catch (NumberFormatException e) {
-            userInterface.accept(LanguageName.bad_parameter_should_be_number);
+            userInterface.accept(LanguageName.BAD_PARAMETER_SHOULD_BE_NUMBER);
             return value;
         }
         return value;
