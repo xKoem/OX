@@ -5,6 +5,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.xkoem.userinterface.UserInterface;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.testng.Assert.assertFalse;
@@ -16,10 +18,13 @@ public class JudgeTest {
     Judge judgeWithBoardSize9;
     GameBoard gameBoard;
     UserInterface userInterface;
+    private ByteArrayOutputStream outContent;
 
     @BeforeMethod
     public void setUp() {
-        userInterface = new UserInterface(new Scanner(System.in)::nextLine, System.out::println, FileReader.readLanguageFile("PL"));
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        userInterface = new UserInterface(new Scanner(System.in)::nextLine, System.out::println, FileReader.readLanguageFile("PL", System.out::println));
         judgeWithBoardSize9 = new Judge(9, 3);
         gameBoard = new GameBoard(new GameConfiguration(), userInterface);
     }

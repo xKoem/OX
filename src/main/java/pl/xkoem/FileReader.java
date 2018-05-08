@@ -7,10 +7,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public class FileReader {
 
-    public static LanguageStrings readLanguageFile(String path) {
+    public static LanguageStrings readLanguageFile(String path, Consumer<String> output) {
         LanguageStrings languageStrings = new LanguageStrings();
         try(BufferedReader reader = new BufferedReader(new java.io.FileReader(new File(path)))) {
             String line;
@@ -29,9 +30,9 @@ public class FileReader {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("Not Found");
+            output.accept("Language path " + path + " not found. Loading default language.");
         } catch (IOException e) {
-            System.out.println("IOException");
+            output.accept("Cannot load file " + path + ". Loading default language.");
         }
 
         return languageStrings;

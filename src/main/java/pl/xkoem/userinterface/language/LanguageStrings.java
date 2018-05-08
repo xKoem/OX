@@ -21,4 +21,8 @@ public class LanguageStrings {
     public boolean exist(LanguageName textName) {
         return language.containsKey(textName);
     }
+
+    public boolean isEmpty() {
+        return language.isEmpty();
+    }
 }
