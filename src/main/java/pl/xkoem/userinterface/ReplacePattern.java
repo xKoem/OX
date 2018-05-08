@@ -9,11 +9,11 @@ public class ReplacePattern {
         this.to = to;
     }
 
-    public String getFrom() {
+    String getFrom() {
         return "%" + from + "%";
     }
 
-    public String getTo() {
+    String getTo() {
         return to;
     }
 }
