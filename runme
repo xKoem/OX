@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -jar target/OX-0.6.jar
+java -jar target/OX-1.0.jar
