@@ -12,3 +12,4 @@ MATCH_DRAW : Remis %points%
 MATCH_WINNER : Wygrywa %player%. %points%
 GAME_WINNER : Zwyciezca: %winner% punkty: %winner_points% \nPrzegrany: %loser% punkty: %loser_points%\n
 GAME_DRAW : Remis! Zdobye punkty: %points%
+EMPTY_PLAYER_NAME : Nazwa gracza nie moze byc pusta

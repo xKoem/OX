@@ -31,8 +31,9 @@ public class Init {
 
     private String askForName(String player) {
         userInterface.accept(LanguageName.PLAYER_NAME_QUESTION, new ReplacePattern("symbol", player));
-        String playerName = "";
+        String playerName = userInterface.get();
         while (playerName.length() == 0) {
+            userInterface.accept(LanguageName.EMPTY_PLAYER_NAME);
             playerName = userInterface.get();
         }
         return playerName;

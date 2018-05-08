@@ -14,7 +14,8 @@ public enum LanguageName {
     MATCH_DRAW("Draw %points%"),
     MATCH_WINNER("Winner %player%. %points%"),
     GAME_WINNER("Winner: %winner% points: %winner_points% \nLoser: %loser% points: %loser_points%\n"),
-    GAME_DRAW("Draw! Points: %points%");
+    GAME_DRAW("Draw! Points: %points%"),
+    EMPTY_PLAYER_NAME("Player name cannot be empty");
 
     private String value;
 
