@@ -1,21 +1,22 @@
 package pl.xkoem;
 
+import pl.xkoem.userinterface.UserInterface;
+
 import java.security.InvalidParameterException;
-import java.util.function.Consumer;
 
 public class GameBoard {
 
     private Symbol[] boardSymbols;
     private final int width;
     private final int height;
-    private final Consumer<String> userOutput;
+    private final UserInterface userInterface;
     private int newestPosition;
 
-    public GameBoard(GameConfiguration gameConfiguration, Consumer<String> userOutput) {
+    public GameBoard(GameConfiguration gameConfiguration, UserInterface userInterface) {
         int[] boardSize = gameConfiguration.getBoardSize();
         width = boardSize[0];
         height = boardSize[1];
-        this.userOutput = userOutput;
+        this.userInterface = userInterface;
         int numberOfPositions = width * height;
         boardSymbols = new Symbol[numberOfPositions];
         newestPosition = -1;
@@ -37,7 +38,7 @@ public class GameBoard {
             }
             stringBuilder.append("\n");
         }
-        userOutput.accept(stringBuilder.toString());
+        userInterface.accept(stringBuilder.toString());
     }
 
     boolean isPositionValid(int position) {

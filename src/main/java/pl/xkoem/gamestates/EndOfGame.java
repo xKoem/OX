@@ -1,15 +1,14 @@
 package pl.xkoem.gamestates;
 
 import pl.xkoem.DashBoard;
-
-import java.util.function.Consumer;
+import pl.xkoem.userinterface.UserInterface;
 
 public class EndOfGame {
-    private final Consumer<String> userOutput;
+    private final UserInterface userInterface;
     private final DashBoard dashBoard;
 
-    public EndOfGame(Consumer<String> userOutput, DashBoard dashBoard) {
-        this.userOutput = userOutput;
+    public EndOfGame(UserInterface userInterface, DashBoard dashBoard) {
+        this.userInterface = userInterface;
         this.dashBoard = dashBoard;
     }
 
@@ -21,6 +20,6 @@ public class EndOfGame {
         StringBuilder results = new StringBuilder();
         results.append("Winner: ").append(dashBoard.getWinnerName()).append(" points: ").append(dashBoard.getWinnerPoints()).append("\n")
                 .append("Loser: ").append(dashBoard.getLoserName()).append(" points: ").append(dashBoard.getLoserPoints()).append("\n");
-        userOutput.accept(results.toString());
+        userInterface.accept(results.toString());
     }
 }

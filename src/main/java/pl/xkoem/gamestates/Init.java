@@ -3,22 +3,19 @@ package pl.xkoem.gamestates;
 import pl.xkoem.GameConfiguration;
 import pl.xkoem.Players;
 import pl.xkoem.Symbol;
+import pl.xkoem.userinterface.UserInterface;
 
 import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class Init {
 
-    private final Supplier<String> userInput;
     private final GameConfiguration gameConfiguration;
     private Players players;
-    private final Consumer<String> userOutput;
+    private final UserInterface userInterface;
 
-    public Init(Supplier<String> userInput, Consumer<String> userOutput, Players players, GameConfiguration gameConfiguration) {
-        this.userInput = userInput;
+    public Init(UserInterface userInterface, Players players, GameConfiguration gameConfiguration) {
         this.players = players;
-        this.userOutput = userOutput;
+        this.userInterface = userInterface;
         this.gameConfiguration = gameConfiguration;
     }
 
@@ -31,10 +28,10 @@ public class Init {
     }
 
     private String askForName(String player) {
-        userOutput.accept("Podaj nazwe gracza " + player + ": ");
+        userInterface.accept("Podaj nazwe gracza " + player + ": ");
         String playerName = "";
         while (playerName.length() == 0) {
-            playerName = userInput.get();
+            playerName = userInterface.get();
         }
         return playerName;
     }
@@ -48,8 +45,8 @@ public class Init {
 
     private void askWhoBegins() {
         while(true) {
-            userOutput.accept("Podaj kto zaczyna O czy X");
-            String userData = userInput.get();
+            userInterface.accept("Podaj kto zaczyna O czy X");
+            String userData = userInterface.get();
             if (userData.equals("X") || userData .equals("O")) {
                 gameConfiguration.setBeginner(Symbol.valueOf(userData));
                 return;
@@ -58,7 +55,7 @@ public class Init {
     }
 
     private void askForLanguage() {
-        userOutput.accept("Wybierz jezyk: "); //todo obsluga wprowadzania jezykow
+        userInterface.accept("Wybierz jezyk: "); //todo obsluga wprowadzania jezykow
     }
 
     private void askForBoardSettings() {
@@ -72,8 +69,8 @@ public class Init {
         maxSymbolsToWin = Math.max(maxSymbolsToWin, gameConfiguration.getMinSymbolsToWin());
         Optional<Integer> symbolsToWin = Optional.empty();
         while(!symbolsToWin.isPresent()) {
-            userOutput.accept("Podaj min ilosc symboli do wygrania");
-            String userData = userInput.get();
+            userInterface.accept("Podaj min ilosc symboli do wygrania");
+            String userData = userInterface.get();
             symbolsToWin = tryChangeStringToIntBetweenMinAndMaxValue(userData, gameConfiguration.getMinSymbolsToWin() , maxSymbolsToWin);
         }
         return symbolsToWin.get();
@@ -82,8 +79,8 @@ public class Init {
     private int askForWidth() {
         Optional<Integer> width = Optional.empty();
         while(gameConfiguration.getMinX() > width.orElse(0)) {
-            userOutput.accept("Podaj szerokosc planszy");
-            String userData = userInput.get();
+            userInterface.accept("Podaj szerokosc planszy");
+            String userData = userInterface.get();
             width = tryChangeStringToIntWithMinValue(userData, gameConfiguration.getMinX());
         }
         return width.get();
@@ -92,8 +89,8 @@ public class Init {
     private int askForHeight() {
         Optional<Integer> height = Optional.empty();
         while(gameConfiguration.getMinY() > height.orElse(0)) {
-            userOutput.accept("Podaj wysokosc planszy");
-            String userData = userInput.get();
+            userInterface.accept("Podaj wysokosc planszy");
+            String userData = userInterface.get();
             height = tryChangeStringToIntWithMinValue(userData, gameConfiguration.getMinY());
         }
         return height.get();
@@ -105,7 +102,7 @@ public class Init {
             return value;
         }
         if(value.get() < minValue) {
-            userOutput.accept("Za mało ziom");
+            userInterface.accept("Za mało ziom");
             return Optional.empty();
         }
         return value;
@@ -117,11 +114,11 @@ public class Init {
             return value;
         }
         if(value.get() < minValue) {
-            userOutput.accept("Za mało ziom");
+            userInterface.accept("Za mało ziom");
             return Optional.empty();
         }
         if(value.get() > maxValue) {
-            userOutput.accept("Za duzo ziom");
+            userInterface.accept("Za duzo ziom");
             return Optional.empty();
         }
         return value;
@@ -133,7 +130,7 @@ public class Init {
             Integer intValue = Integer.valueOf(string);
             value = Optional.of(intValue);
         } catch (NumberFormatException e) {
-            userOutput.accept("Bledny parametr, sprobuj jeszcze raz. Nastepnym razem wez wpisz liczbe...");
+            userInterface.accept("Bledny parametr, sprobuj jeszcze raz. Nastepnym razem wez wpisz liczbe...");
             return value;
         }
         return value;

@@ -2,6 +2,9 @@ package pl.xkoem;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.xkoem.userinterface.UserInterface;
+
+import java.util.Scanner;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -14,7 +17,7 @@ public class GameBoardTests {
 
     @BeforeMethod
     public void setUpDefaultBoard() {
-        gameBoard = new GameBoard(new GameConfiguration(3,3,3), System.out::println);
+        gameBoard = new GameBoard(new GameConfiguration(3,3,3), new UserInterface(new Scanner(System.in)::nextLine, System.out::println));
     }
 
     public void checkValidPositionsForDefaultBoard() {
