@@ -41,7 +41,6 @@ public class OXGame {
         Init init = new Init(userInterface, players, gameConfiguration);
         players = init.askForNames();
         gameConfiguration = init.askForConfiguration(gameConfiguration);
-        players.printPlayerNames();
     }
 
 

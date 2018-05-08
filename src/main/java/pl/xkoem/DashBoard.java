@@ -28,7 +28,7 @@ public class DashBoard {
             player2Score += POINTS_FOR_WIN;
     }
 
-    boolean isWinner() {
+    public boolean isWinner() {
        return !(player1Score == player2Score);
     }
 

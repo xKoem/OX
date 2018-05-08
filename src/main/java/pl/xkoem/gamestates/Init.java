@@ -3,6 +3,8 @@ package pl.xkoem.gamestates;
 import pl.xkoem.GameConfiguration;
 import pl.xkoem.Players;
 import pl.xkoem.Symbol;
+import pl.xkoem.userinterface.LanguageName;
+import pl.xkoem.userinterface.ReplacePattern;
 import pl.xkoem.userinterface.UserInterface;
 
 import java.util.Optional;
@@ -28,7 +30,7 @@ public class Init {
     }
 
     private String askForName(String player) {
-        userInterface.accept("Podaj nazwe gracza " + player + ": ");
+        userInterface.accept(LanguageName.player_name_question, new ReplacePattern("symbol", player));
         String playerName = "";
         while (playerName.length() == 0) {
             playerName = userInterface.get();
@@ -38,24 +40,19 @@ public class Init {
     
     public GameConfiguration askForConfiguration(GameConfiguration gameConfiguration) {
         askForBoardSettings();
-        askForLanguage();
         askWhoBegins();
         return gameConfiguration;
     }
 
     private void askWhoBegins() {
         while(true) {
-            userInterface.accept("Podaj kto zaczyna O czy X");
+            userInterface.accept(LanguageName.starting_player_question);
             String userData = userInterface.get();
             if (userData.equals("X") || userData .equals("O")) {
                 gameConfiguration.setBeginner(Symbol.valueOf(userData));
                 return;
             }
         }
-    }
-
-    private void askForLanguage() {
-        userInterface.accept("Wybierz jezyk: "); //todo obsluga wprowadzania jezykow
     }
 
     private void askForBoardSettings() {
@@ -69,7 +66,7 @@ public class Init {
         maxSymbolsToWin = Math.max(maxSymbolsToWin, gameConfiguration.getMinSymbolsToWin());
         Optional<Integer> symbolsToWin = Optional.empty();
         while(!symbolsToWin.isPresent()) {
-            userInterface.accept("Podaj min ilosc symboli do wygrania");
+            userInterface.accept(LanguageName.symbols_amount_question);
             String userData = userInterface.get();
             symbolsToWin = tryChangeStringToIntBetweenMinAndMaxValue(userData, gameConfiguration.getMinSymbolsToWin() , maxSymbolsToWin);
         }
@@ -79,7 +76,7 @@ public class Init {
     private int askForWidth() {
         Optional<Integer> width = Optional.empty();
         while(gameConfiguration.getMinX() > width.orElse(0)) {
-            userInterface.accept("Podaj szerokosc planszy");
+            userInterface.accept(LanguageName.width_question);
             String userData = userInterface.get();
             width = tryChangeStringToIntWithMinValue(userData, gameConfiguration.getMinX());
         }
@@ -89,7 +86,7 @@ public class Init {
     private int askForHeight() {
         Optional<Integer> height = Optional.empty();
         while(gameConfiguration.getMinY() > height.orElse(0)) {
-            userInterface.accept("Podaj wysokosc planszy");
+            userInterface.accept(LanguageName.height_question);
             String userData = userInterface.get();
             height = tryChangeStringToIntWithMinValue(userData, gameConfiguration.getMinY());
         }
@@ -102,7 +99,7 @@ public class Init {
             return value;
         }
         if(value.get() < minValue) {
-            userInterface.accept("Za mało ziom");
+            userInterface.accept(LanguageName.too_low_number);
             return Optional.empty();
         }
         return value;
@@ -114,11 +111,11 @@ public class Init {
             return value;
         }
         if(value.get() < minValue) {
-            userInterface.accept("Za mało ziom");
+            userInterface.accept(LanguageName.too_low_number);
             return Optional.empty();
         }
         if(value.get() > maxValue) {
-            userInterface.accept("Za duzo ziom");
+            userInterface.accept(LanguageName.too_high_number);
             return Optional.empty();
         }
         return value;
@@ -130,7 +127,7 @@ public class Init {
             Integer intValue = Integer.valueOf(string);
             value = Optional.of(intValue);
         } catch (NumberFormatException e) {
-            userInterface.accept("Bledny parametr, sprobuj jeszcze raz. Nastepnym razem wez wpisz liczbe...");
+            userInterface.accept(LanguageName.bad_parameter_should_be_number);
             return value;
         }
         return value;

@@ -1,6 +1,8 @@
 package pl.xkoem.gamestates;
 
 import pl.xkoem.*;
+import pl.xkoem.userinterface.LanguageName;
+import pl.xkoem.userinterface.ReplacePattern;
 import pl.xkoem.userinterface.UserInterface;
 
 import java.util.HashMap;
@@ -44,11 +46,11 @@ public class Match {
         gameBoard.drawBoard();
         if(!judge.checkNewPosition(gameBoard)) {
             dashBoard.addDrawPoints();
-            userInterface.accept("Remis " + getPoints(dashBoard));
+            userInterface.accept(LanguageName.match_draw, new ReplacePattern("points", getPoints(dashBoard)));
         } else {
             Player winner = players.getPlayer(gameBoard.getSymbolAtPosition(gameBoard.getNewestPosition()));
             dashBoard.addPointsToWinner(winner);
-            userInterface.accept("Wygrywa " + winner.getSymbol() + ". " + getPoints(dashBoard));
+            userInterface.accept(LanguageName.match_winner, new ReplacePattern("player", winner.getSymbol().toString()), new ReplacePattern("points", getPoints(dashBoard)));
         }
 
     }

@@ -9,9 +9,10 @@ public enum LanguageName {
     bad_parameter_should_be_number,
     too_low_number,
     too_high_number,
-    player_info,
     player_move,
     bad_position,
     match_draw,
-    match_winner;
+    match_winner,
+    game_winner,
+    game_draw;
 }

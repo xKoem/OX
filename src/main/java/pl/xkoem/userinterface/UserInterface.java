@@ -16,10 +16,23 @@ public class UserInterface {
     }
 
     public String get() {
-        return userInput.get();
+        return userInput.get().trim();
     }
 
     public void accept(String string) {
         userOutput.accept(string);
+    }
+
+    public void accept(LanguageName languageName) {
+        userOutput.accept(languageStrings.get(languageName));
+    }
+
+    public void accept(LanguageName languageName, ReplacePattern... replacePatterns) {
+        String output = languageStrings.get(languageName);
+
+        for (ReplacePattern replacePattern: replacePatterns) {
+            output = output.replace(replacePattern.getFrom(), replacePattern.getTo());
+        }
+        userOutput.accept(output);
     }
 }

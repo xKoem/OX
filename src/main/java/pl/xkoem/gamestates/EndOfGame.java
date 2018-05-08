@@ -1,6 +1,8 @@
 package pl.xkoem.gamestates;
 
 import pl.xkoem.DashBoard;
+import pl.xkoem.userinterface.LanguageName;
+import pl.xkoem.userinterface.ReplacePattern;
 import pl.xkoem.userinterface.UserInterface;
 
 public class EndOfGame {
@@ -18,8 +20,22 @@ public class EndOfGame {
 
     public void printResults() {
         StringBuilder results = new StringBuilder();
-        results.append("Winner: ").append(dashBoard.getWinnerName()).append(" points: ").append(dashBoard.getWinnerPoints()).append("\n")
-                .append("Loser: ").append(dashBoard.getLoserName()).append(" points: ").append(dashBoard.getLoserPoints()).append("\n");
-        userInterface.accept(results.toString());
+        if (dashBoard.isWinner()) {
+            printWinnerResults();
+        } else {
+            printDrawResults();
+        }
+    }
+
+    private void printDrawResults() {
+        userInterface.accept(LanguageName.game_draw, new ReplacePattern("points", dashBoard.getWinnerPoints()));
+    }
+
+    private void printWinnerResults() {
+        userInterface.accept(LanguageName.game_winner,
+                new ReplacePattern("winner", dashBoard.getWinnerName()),
+                new ReplacePattern("winner_points", dashBoard.getWinnerPoints()),
+                new ReplacePattern("loser", dashBoard.getLoserName()),
+                new ReplacePattern("loser_points", dashBoard.getLoserPoints()));
     }
 }

@@ -2,6 +2,8 @@ package pl.xkoem.gamestates;
 
 import pl.xkoem.GameBoard;
 import pl.xkoem.Player;
+import pl.xkoem.userinterface.LanguageName;
+import pl.xkoem.userinterface.ReplacePattern;
 import pl.xkoem.userinterface.UserInterface;
 
 import java.security.InvalidParameterException;
@@ -26,7 +28,7 @@ class Turn {
     }
 
     private void setSymbolAtPositionPosition() {
-        userInterface.accept(player.getName() + " podaj pole z na ktorym chcesz postawic znak " + player.getSymbol());
+        userInterface.accept(LanguageName.player_move, new ReplacePattern("player", player.getName()), new ReplacePattern("symbol", player.getSymbol().toString()));
         String playerOutputPosition = userInterface.get();
         if (playerOutputPosition.equals("exit")) {
             gameQuit = true;
@@ -38,7 +40,7 @@ class Turn {
             gameBoard.setSymbolAtPosition(player.getSymbol(), position);
             newestPosition = position;
         } catch (InvalidParameterException|NumberFormatException e) {
-            userInterface.accept("Bledne pole, sprobuj jeszcze raz");
+            userInterface.accept(LanguageName.bad_position);
             setSymbolAtPositionPosition();
         }
     }

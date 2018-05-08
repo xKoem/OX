@@ -6,8 +6,9 @@ symbols_amount_question : Podaj min ilosc symboli do wygrania
 bad_parameter_should_be_number : Bledny parametr, sprobuj jeszcze raz. Nastepnym razem wez wpisz liczbe...
 too_low_number : Za malo ziom
 too_high_number : Za duzo ziom
-player_info : Gracz O: %player_o% Gracz X: %player_x%
 player_move : %player% podaj pole z na ktorym chcesz postawic znak %symbol%
 bad_position : Bledne pole, sprobuj jeszcze raz
 match_draw : Remis %points%
 match_winner : Wygrywa %player%. %points%
+game_winner : Zwyciezca: %winner% punkty: %winner_points% \nPrzegrany: %loser% punkty: %loser_points\n%
+game_draw : Remis! Zdobye punkty: %points%
