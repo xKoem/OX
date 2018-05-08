@@ -19,7 +19,7 @@ public class JudgeTest {
 
     @BeforeMethod
     public void setUp() {
-        userInterface = new UserInterface(new Scanner(System.in)::nextLine, System.out::println);
+        userInterface = new UserInterface(new Scanner(System.in)::nextLine, System.out::println, FileReader.readLanguageFile("PL"));
         judgeWithBoardSize9 = new Judge(9, 3);
         gameBoard = new GameBoard(new GameConfiguration(), userInterface);
     }

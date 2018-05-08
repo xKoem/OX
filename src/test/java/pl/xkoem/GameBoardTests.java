@@ -17,7 +17,7 @@ public class GameBoardTests {
 
     @BeforeMethod
     public void setUpDefaultBoard() {
-        gameBoard = new GameBoard(new GameConfiguration(3,3,3), new UserInterface(new Scanner(System.in)::nextLine, System.out::println));
+        gameBoard = new GameBoard(new GameConfiguration(3,3,3), new UserInterface(new Scanner(System.in)::nextLine, System.out::println, FileReader.readLanguageFile("PL")));
     }
 
     public void checkValidPositionsForDefaultBoard() {

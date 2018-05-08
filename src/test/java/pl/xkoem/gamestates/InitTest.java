@@ -2,6 +2,7 @@ package pl.xkoem.gamestates;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.xkoem.FileReader;
 import pl.xkoem.GameConfiguration;
 import pl.xkoem.Players;
 import pl.xkoem.userinterface.UserInterface;
@@ -17,7 +18,7 @@ public class InitTest {
 
     @BeforeMethod
     public void setUp() {
-        init = new Init(new UserInterface(new Scanner(System.in)::nextLine, System.out::println), new Players(), new GameConfiguration());
+        init = new Init(new UserInterface(new Scanner(System.in)::nextLine, System.out::println, FileReader.readLanguageFile("PL")), new Players(), new GameConfiguration());
     }
 
 

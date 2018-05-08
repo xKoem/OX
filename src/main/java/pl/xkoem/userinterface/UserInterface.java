@@ -7,10 +7,12 @@ public class UserInterface {
 
     private final Supplier<String> userInput;
     private final Consumer<String> userOutput;
+    private final LanguageStrings languageStrings;
 
-    public UserInterface(Supplier<String> userInput, Consumer<String> userOutput) {
+    public UserInterface(Supplier<String> userInput, Consumer<String> userOutput, LanguageStrings languageStrings) {
         this.userInput = userInput;
         this.userOutput = userOutput;
+        this.languageStrings = languageStrings;
     }
 
     public String get() {
