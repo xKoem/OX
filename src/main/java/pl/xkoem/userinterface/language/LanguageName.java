@@ -16,14 +16,14 @@ public enum LanguageName {
     game_winner("Winner: %winner% points: %winner_points% \nLoser: %loser% points: %loser_points%\n"),
     game_draw("Draw! Points: %points%");
 
-    private String code;
+    private String value;
 
-    LanguageName(String code) {
-        this.code = code;
+    LanguageName(String value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        return code;
+        return value;
     }
 }
