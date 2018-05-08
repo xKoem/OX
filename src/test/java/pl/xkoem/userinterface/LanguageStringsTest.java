@@ -3,6 +3,8 @@ package pl.xkoem.userinterface;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.xkoem.userinterface.language.LanguageName;
+import pl.xkoem.userinterface.language.LanguageStrings;
 
 @Test
 public class LanguageStringsTest {

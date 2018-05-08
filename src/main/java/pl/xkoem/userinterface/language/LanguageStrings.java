@@ -1,4 +1,4 @@
-package pl.xkoem.userinterface;
+package pl.xkoem.userinterface.language;
 
 import java.util.HashMap;
 
@@ -16,5 +16,9 @@ public class LanguageStrings {
 
     public String get(LanguageName textName) {
         return language.get(textName);
+    }
+
+    public boolean exist(LanguageName textName) {
+        return language.containsKey(textName);
     }
 }

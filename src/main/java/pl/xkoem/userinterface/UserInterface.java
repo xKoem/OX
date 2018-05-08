@@ -1,5 +1,8 @@
 package pl.xkoem.userinterface;
 
+import pl.xkoem.userinterface.language.LanguageName;
+import pl.xkoem.userinterface.language.LanguageStrings;
+
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -13,6 +16,15 @@ public class UserInterface {
         this.userInput = userInput;
         this.userOutput = userOutput;
         this.languageStrings = languageStrings;
+        checkLanguageStrings();
+    }
+
+    private void checkLanguageStrings() {
+        for (LanguageName languageName: LanguageName.values()) {
+            if (!languageStrings.exist(languageName)) {
+                languageStrings.add(languageName, languageName.toString());
+            }
+        }
     }
 
     public String get() {

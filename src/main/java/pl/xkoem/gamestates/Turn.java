@@ -2,7 +2,7 @@ package pl.xkoem.gamestates;
 
 import pl.xkoem.GameBoard;
 import pl.xkoem.Player;
-import pl.xkoem.userinterface.LanguageName;
+import pl.xkoem.userinterface.language.LanguageName;
 import pl.xkoem.userinterface.ReplacePattern;
 import pl.xkoem.userinterface.UserInterface;
 

@@ -1,7 +1,7 @@
 package pl.xkoem;
 
-import pl.xkoem.userinterface.LanguageName;
-import pl.xkoem.userinterface.LanguageStrings;
+import pl.xkoem.userinterface.language.LanguageName;
+import pl.xkoem.userinterface.language.LanguageStrings;
 
 import java.io.BufferedReader;
 import java.io.File;
