@@ -1,10 +1,24 @@
 package pl.xkoem;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Test
 public class PlayerTests {
+    Players players;
+    Player player1;
+    Player player2;
+
+    @BeforeMethod
+    public void setUp() {
+        players = new Players();
+        players.setPlayers("","");
+
+        player1 = players.getPlayer(Symbol.O);
+        player2 = players.getPlayer(Symbol.X);
+
+    }
 
     public void testAddPlayer() {
         Players players = new Players();
@@ -13,27 +27,30 @@ public class PlayerTests {
     }
 
     public void testCompareNullPlayers() {
-        Player p1 = null;
-        Player p2 = null;
-        Assert.assertEquals(p1,p2);
+        player1 = null;
+        player2 = null;
+        Assert.assertEquals(player1,player2);
     }
 
     public void testComparePlayersWithNullParameters() {
-        Player p1 = new Player(null, null);
-        Player p2 = new Player(null, null);
-        Assert.assertNotEquals(p1,p2);
+        Assert.assertNotEquals(player1,player2);
     }
 
     public void testCompare_whenOnePlayerIsNullAndTheOtherOneHaveNoNameAndSymbol_shouldBeFalse() {
-        Player p1 = null;
-        Player p2 = new Player(null,null);
-        Assert.assertNotEquals(p1,p2);
+        Assert.assertNotEquals(player1,player2);
     }
 
     public void testCompare_whenOnePlayerHaveNoNameAndSymbolAndTheOtherOneIsNull_shouldBeFalse() {
-        Player p1 = new Player(null,null);
-        Player p2 = null;
-        Assert.assertNotEquals(p1,p2);
+        Assert.assertNotEquals(player1,player2);
     }
+
+    public void testGetOpponentToPlayer_O_shouldReturnPlayer_X() {
+        Assert.assertEquals(players.getOppositePlayer(player1), player2);
+    }
+
+    public void testGetOpponentToPlayer_X_shouldReturnPlayer_X() {
+        Assert.assertEquals(players.getOppositePlayer(player2), player1);
+    }
+
 
 }

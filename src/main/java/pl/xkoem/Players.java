@@ -15,10 +15,6 @@ public class Players {
         return players[playerNumber];
     }
 
-    void printPlayerNames() {
-        System.out.println(String.format("Gracz O: %s Gracz X: %s", players[0].getName(), players[1].getName()));
-    }
-
     public Player getOppositePlayer(Player player) {
         if(players[0].equals(player))
             return players[1];

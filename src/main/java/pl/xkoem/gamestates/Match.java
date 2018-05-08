@@ -1,10 +1,11 @@
 package pl.xkoem.gamestates;
 
 import pl.xkoem.*;
+import pl.xkoem.userinterface.language.LanguageName;
+import pl.xkoem.userinterface.ReplacePattern;
+import pl.xkoem.userinterface.UserInterface;
 
 import java.util.HashMap;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 
 
@@ -14,27 +15,25 @@ public class Match {
      * przy użyciu
      * @param gameConfiguration
      */
-    Supplier<String> userInput;
-    Consumer<String> userOutput;
+    private final UserInterface userInterface;
     Players players;
     GameConfiguration gameConfiguration;
     int counter;
     private int MATCHES_ON_GAME = 3;
 
-    public Match(Supplier<String> userInput, Consumer<String> userOutput, Players players, GameConfiguration gameConfiguration) {
+    public Match(UserInterface userInterface, Players players, GameConfiguration gameConfiguration) {
         this.gameConfiguration = gameConfiguration;
         this.players = players;
-        this.userInput = userInput;
-        this.userOutput = userOutput;
+        this.userInterface = userInterface;
         counter = 0;
     }
 
     public void run(Player player, DashBoard dashBoard) {
         counter++;
-        GameBoard gameBoard = new GameBoard(gameConfiguration,userOutput);
+        GameBoard gameBoard = new GameBoard(gameConfiguration, userInterface);
         Judge judge = new Judge(gameBoard.boardSize(), gameConfiguration.getSymbolsToWin());
         do {
-            Turn turn = new Turn(userOutput, userInput, player, gameBoard);
+            Turn turn = new Turn(userInterface, player, gameBoard);
             turn.run();
             player = players.getOppositePlayer(player);
             if (turn.isGameQuit()) {
@@ -47,11 +46,11 @@ public class Match {
         gameBoard.drawBoard();
         if(!judge.checkNewPosition(gameBoard)) {
             dashBoard.addDrawPoints();
-            userOutput.accept("Remis " + getPoints(dashBoard));
+            userInterface.accept(LanguageName.MATCH_DRAW, new ReplacePattern("points", getPoints(dashBoard)));
         } else {
             Player winner = players.getPlayer(gameBoard.getSymbolAtPosition(gameBoard.getNewestPosition()));
             dashBoard.addPointsToWinner(winner);
-            userOutput.accept("Wygrywa " + winner.getSymbol() + ". " + getPoints(dashBoard));
+            userInterface.accept(LanguageName.MATCH_WINNER, new ReplacePattern("player", winner.getSymbol().toString()), new ReplacePattern("points", getPoints(dashBoard)));
         }
 
     }

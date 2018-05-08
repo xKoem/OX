@@ -13,7 +13,7 @@ public class DashBoard {
     private int player1Score;
     private int player2Score;
 
-    DashBoard(Players players) {
+    public DashBoard(Players players) {
         player1 = players.getPlayer(0);
         player2 = players.getPlayer(1);
 
@@ -28,7 +28,7 @@ public class DashBoard {
             player2Score += POINTS_FOR_WIN;
     }
 
-    boolean isWinner() {
+    public boolean isWinner() {
        return !(player1Score == player2Score);
     }
 

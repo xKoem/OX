@@ -2,22 +2,21 @@ package pl.xkoem.gamestates;
 
 import pl.xkoem.GameBoard;
 import pl.xkoem.Player;
+import pl.xkoem.userinterface.language.LanguageName;
+import pl.xkoem.userinterface.ReplacePattern;
+import pl.xkoem.userinterface.UserInterface;
 
 import java.security.InvalidParameterException;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 class Turn {
-    private Consumer<String> userOutput;
-    private Supplier<String> userInput;
+    private static UserInterface userInterface;
     private Player player;
     private GameBoard gameBoard;
     private int newestPosition;
     private boolean gameQuit;
 
-    Turn(Consumer<String> userOutput, Supplier<String> userInput, Player player, GameBoard gameBoard) {
-        this.userOutput = userOutput;
-        this.userInput = userInput;
+    Turn(UserInterface userInterface, Player player, GameBoard gameBoard) {
+        this.userInterface = userInterface;
         this.player = player;
         this.gameBoard = gameBoard;
         gameQuit = false;
@@ -29,8 +28,8 @@ class Turn {
     }
 
     private void setSymbolAtPositionPosition() {
-        userOutput.accept(player.getName() + " podaj pole z na ktorym chcesz postawic znak " + player.getSymbol());
-        String playerOutputPosition = userInput.get();
+        userInterface.accept(LanguageName.PLAYER_MOVE, new ReplacePattern("player", player.getName()), new ReplacePattern("symbol", player.getSymbol().toString()));
+        String playerOutputPosition = userInterface.get();
         if (playerOutputPosition.equals("exit")) {
             gameQuit = true;
             return;
@@ -41,7 +40,7 @@ class Turn {
             gameBoard.setSymbolAtPosition(player.getSymbol(), position);
             newestPosition = position;
         } catch (InvalidParameterException|NumberFormatException e) {
-            userOutput.accept("Bledne pole, sprobuj jeszcze raz");
+            userInterface.accept(LanguageName.BAD_POSITION);
             setSymbolAtPositionPosition();
         }
     }

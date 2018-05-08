@@ -2,9 +2,13 @@ package pl.xkoem.gamestates;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.xkoem.FileReader;
 import pl.xkoem.GameConfiguration;
 import pl.xkoem.Players;
+import pl.xkoem.userinterface.UserInterface;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -13,10 +17,14 @@ import static org.testng.Assert.assertEquals;
 public class InitTest {
 
     Init init;
+    private ByteArrayOutputStream outContent;
 
     @BeforeMethod
     public void setUp() {
-        init = new Init(new Scanner(System.in)::nextLine, System.out::println, new Players(), new GameConfiguration());
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        init = new Init(new UserInterface(new Scanner(System.in)::nextLine, System.out::println,
+                FileReader.readLanguageFile("PL", System.out::println)), new Players(), new GameConfiguration());
     }
 
 

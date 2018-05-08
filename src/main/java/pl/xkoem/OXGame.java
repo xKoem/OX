@@ -3,22 +3,18 @@ package pl.xkoem;
 import pl.xkoem.gamestates.EndOfGame;
 import pl.xkoem.gamestates.Init;
 import pl.xkoem.gamestates.Match;
-
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import pl.xkoem.userinterface.UserInterface;
 
 public class OXGame {
 
+    private final UserInterface userInterface;
     private Players players;
-    private final Supplier<String> userInput;
-    private final Consumer<String> userOutput;
     private GameConfiguration gameConfiguration;
 
 
-    public OXGame(Players players, Supplier<String> userInput, Consumer<String> userOutput, GameConfiguration gameConfiguration) {
+    public OXGame(Players players, UserInterface userInterface, GameConfiguration gameConfiguration) {
         this.players = players;
-        this.userInput = userInput;
-        this.userOutput = userOutput;
+        this.userInterface = userInterface;
         this.gameConfiguration = gameConfiguration;
     }
 
@@ -29,7 +25,7 @@ public class OXGame {
      */
     void run() {
         initGame();
-        Match match = new Match(userInput, userOutput, players, gameConfiguration);
+        Match match = new Match(userInterface, players, gameConfiguration);
         DashBoard dashBoard = new DashBoard(players);
         do {
             Player player = players.getPlayer(gameConfiguration.getBeginner());
@@ -37,15 +33,14 @@ public class OXGame {
             match.run(player, dashBoard);
         } while (!match.isFinished());
 
-        EndOfGame endOfGame = new EndOfGame(userOutput, dashBoard);
+        EndOfGame endOfGame = new EndOfGame(userInterface, dashBoard);
         endOfGame.printResults();
     }
 
     private void initGame() {
-        Init init = new Init(userInput, userOutput, players, gameConfiguration);
+        Init init = new Init(userInterface, players, gameConfiguration);
         players = init.askForNames();
         gameConfiguration = init.askForConfiguration(gameConfiguration);
-        players.printPlayerNames();
     }
 
 

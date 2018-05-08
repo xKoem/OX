@@ -3,6 +3,11 @@ package pl.xkoem;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.xkoem.userinterface.UserInterface;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -12,11 +17,16 @@ public class JudgeTest {
 
     Judge judgeWithBoardSize9;
     GameBoard gameBoard;
+    UserInterface userInterface;
+    private ByteArrayOutputStream outContent;
 
     @BeforeMethod
     public void setUp() {
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        userInterface = new UserInterface(new Scanner(System.in)::nextLine, System.out::println, FileReader.readLanguageFile("PL", System.out::println));
         judgeWithBoardSize9 = new Judge(9, 3);
-        gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+        gameBoard = new GameBoard(new GameConfiguration(), userInterface);
     }
 
     public void testIfMatchIsFinished_WhenAnyCheckingTookPlace_shouldReturnFalse() {
@@ -25,7 +35,7 @@ public class JudgeTest {
 
     public void testIfMatchIsFinished_When_9_CheckingsTookPlace_shouldReturnTrue() {
         for(int i = 0; i < 9; i++) {
-            judgeWithBoardSize9.checkNewPosition(new GameBoard(new GameConfiguration(), System.out::println));
+            judgeWithBoardSize9.checkNewPosition(new GameBoard(new GameConfiguration(), userInterface));
         }
         assertTrue(judgeWithBoardSize9.isMatchFinished());
     }
@@ -76,7 +86,7 @@ public class JudgeTest {
 
     public void testDecreasingDiagonal_onNotSquaredBoard_whenShouldBeCorrect() {
         Judge judge = new Judge(15, 3);
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(3, 5, 3), System.out::println);
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(3, 5, 3), userInterface);
         gameBoard.setSymbolAtPosition(Symbol.X, 6);
         gameBoard.setSymbolAtPosition(Symbol.X, 10);
         gameBoard.setSymbolAtPosition(Symbol.X, 14);
@@ -95,7 +105,7 @@ public class JudgeTest {
     public void testIncreasingDiagonal_onNotSquaredBoard_whenShouldBeCorrect() {
         Judge judge = new Judge(15, 3);
 
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(3, 5, 3), System.out::println);
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(3, 5, 3), userInterface);
         gameBoard.setSymbolAtPosition(Symbol.X, 9);
         gameBoard.setSymbolAtPosition(Symbol.X, 7);
         gameBoard.setSymbolAtPosition(Symbol.X, 5);
@@ -104,7 +114,7 @@ public class JudgeTest {
     }
 
     public void testIncreasingDiagonal_onBigBoardWhenIsSmallDiagonalToTest_whenShouldBeCorrect() {
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(6, 6, 3), System.out::println);
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(6, 6, 3), userInterface);
         gameBoard.setSymbolAtPosition(Symbol.X, 12);
         gameBoard.setSymbolAtPosition(Symbol.X, 7);
         gameBoard.setSymbolAtPosition(Symbol.X, 2);
@@ -113,7 +123,7 @@ public class JudgeTest {
     }
 
     public void testDecreasingDiagonal_onBigBoardWhenIsSmallDiagonalToTest_whenShouldBeCorrect() {
-        GameBoard gameBoard = new GameBoard(new GameConfiguration(6, 6, 3), System.out::println);
+        GameBoard gameBoard = new GameBoard(new GameConfiguration(6, 6, 3), userInterface);
         gameBoard.setSymbolAtPosition(Symbol.X, 3);
         gameBoard.setSymbolAtPosition(Symbol.X, 10);
         gameBoard.setSymbolAtPosition(Symbol.X, 17);
@@ -155,7 +165,7 @@ public class JudgeTest {
 
     public void testIncreasingDiagonal_on_3x3_board_putting_X_onEveryPosition_shouldReturnFalse() {
         for(int i = 0; i < 9; i++) {
-            GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+            GameBoard gameBoard = new GameBoard(new GameConfiguration(), userInterface);
             gameBoard.setSymbolAtPosition(Symbol.X, i);
             assertFalse(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, i));
         }
@@ -163,7 +173,7 @@ public class JudgeTest {
 
     public void testDecreasingDiagonal_on_3x3_board_putting_X_onEveryPosition_shouldReturnFalse() {
         for(int i = 0; i < 9; i++) {
-            GameBoard gameBoard = new GameBoard(new GameConfiguration(), System.out::println);
+            GameBoard gameBoard = new GameBoard(new GameConfiguration(), userInterface);
             gameBoard.setSymbolAtPosition(Symbol.X, i);
             assertFalse(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, i));
 
