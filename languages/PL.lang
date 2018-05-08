@@ -10,5 +10,5 @@ player_move : %player% podaj pole z na ktorym chcesz postawic znak %symbol%
 bad_position : Bledne pole, sprobuj jeszcze raz
 match_draw : Remis %points%
 match_winner : Wygrywa %player%. %points%
-game_winner : Zwyciezca: %winner% punkty: %winner_points% \nPrzegrany: %loser% punkty: %loser_points\n%
+game_winner : Zwyciezca: %winner% punkty: %winner_points% \nPrzegrany: %loser% punkty: %loser_points%\n
 game_draw : Remis! Zdobye punkty: %points%
