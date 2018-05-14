@@ -7,7 +7,7 @@ import pl.xkoem.userinterface.UserInterface;
 import java.security.InvalidParameterException;
 
 public class GameBoard {
-    private Symbol[] boardSymbols;
+    private BoardSymbols boardSymbols;
     private final int width;
     private final int height;
     private final UserInterface userInterface;
@@ -19,7 +19,7 @@ public class GameBoard {
         this.height = boardSize[1];
         this.userInterface = userInterface;
         int numberOfPositions = width * height;
-        boardSymbols = new Symbol[numberOfPositions];
+        boardSymbols = new BoardSymbols(numberOfPositions);
         newestPosition = -1;
     }
 
@@ -28,22 +28,22 @@ public class GameBoard {
     }
 
     public boolean isPositionValid(int position) {
-        if(position < 0 || position > boardSymbols.length -1)
+        if(position < 0 || position > boardSymbols.size() -1)
             return false;
-        return boardSymbols[position] == null;
+        return boardSymbols.isEmpty(position);
     }
 
     public void setSymbolAtPosition(Symbol symbol, int position) throws InvalidParameterException {
         if(!isPositionValid(position)) {
             throw new InvalidParameterException("Bad position");
         }
-        boardSymbols[position] = symbol;
+        boardSymbols.set(position, symbol);
         newestPosition = position;
 
     }
 
     public int boardSize() {
-        return boardSymbols.length;
+        return boardSymbols.size();
     }
 
     public int[] translatePositionToCoordinates(int position) {
@@ -59,7 +59,7 @@ public class GameBoard {
 
     public Symbol getSymbolAtPosition(int x, int y) {
         int position = translateCoordinatesToPosition(x,y);
-        if(position >= boardSymbols.length || position < 0) {
+        if(position >= boardSymbols.size() || position < 0) {
             throw new InvalidParameterException();
         }
         return getSymbolAtPosition(position);
@@ -70,14 +70,10 @@ public class GameBoard {
     }
 
     public Symbol getSymbolAtPosition(int position) {
-        return boardSymbols[position];
+        return boardSymbols.get(position);
     }
 
     public int getWidth() {
         return width;
-    }
-
-    public int getHeight() {
-        return height;
     }
 }

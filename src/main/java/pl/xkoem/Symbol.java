@@ -12,7 +12,14 @@ public enum Symbol {
         public Symbol getOpponent() {
             return X;
         }
+    },
+    EMPTY("") {
+        @Override
+        public Symbol getOpponent() {
+            return EMPTY;
+        }
     };
+
 
     private String symbol;
 
