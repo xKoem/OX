@@ -32,7 +32,7 @@ public class Judge {
     boolean checkVertical(GameBoard gameBoard, int newestPosition) {
         Symbol symbol = gameBoard.getSymbolAtPosition(newestPosition);
         int signsCounter = 0;
-        for(int position = newestPosition%gameBoard.getWidth(); position < gameBoard.boardSize(); position += gameBoard.getWidth()) {
+        for(int position = newestPosition%gameBoard.getWidth(); position < gameBoard.getBoardSize(); position += gameBoard.getWidth()) {
             if(symbol.equals(gameBoard.getSymbolAtPosition(position))) {
                 signsCounter++;
             } else {
@@ -75,7 +75,7 @@ public class Judge {
         while(!(position < gameBoard.getWidth() || position % gameBoard.getWidth() == 0)) {
             position -= (gameBoard.getWidth() + 1);
         }
-        while(position <= gameBoard.boardSize()) {
+        while(position <= gameBoard.getBoardSize()) {
             if (symbol.equals(gameBoard.getSymbolAtPosition(position))) {
                 signsCounter++;
             } else {
@@ -103,7 +103,7 @@ public class Judge {
             position -= (gameBoard.getWidth() - 1);
         }
 
-        while(position < gameBoard.boardSize()) {
+        while(position < gameBoard.getBoardSize()) {
             if (symbol.equals(gameBoard.getSymbolAtPosition(position))) {
                 signsCounter++;
             } else {

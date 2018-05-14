@@ -42,27 +42,8 @@ public class GameBoard {
 
     }
 
-    public int boardSize() {
+    public int getBoardSize() {
         return boardSymbols.size();
-    }
-
-    public int[] translatePositionToCoordinates(int position) {
-        int positions[] = new int[2];
-        positions[1] = (position/width);
-        positions[0] = position - (position/width) * width;
-        return positions;
-    }
-
-    public int translateCoordinatesToPosition(int x, int y) {
-        return y * width + x;
-    }
-
-    public Symbol getSymbolAtPosition(int x, int y) {
-        int position = translateCoordinatesToPosition(x,y);
-        if(position >= boardSymbols.size() || position < 0) {
-            throw new InvalidParameterException();
-        }
-        return getSymbolAtPosition(position);
     }
 
     public int getNewestPosition() {
