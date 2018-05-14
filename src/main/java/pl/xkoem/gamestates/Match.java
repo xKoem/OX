@@ -1,6 +1,7 @@
 package pl.xkoem.gamestates;
 
 import pl.xkoem.*;
+import pl.xkoem.board.GameBoard;
 import pl.xkoem.userinterface.language.LanguageName;
 import pl.xkoem.userinterface.ReplacePattern;
 import pl.xkoem.userinterface.UserInterface;
@@ -31,7 +32,7 @@ public class Match {
     public void run(Player player, DashBoard dashBoard) {
         counter++;
         GameBoard gameBoard = new GameBoard(gameConfiguration, userInterface);
-        Judge judge = new Judge(gameBoard.boardSize(), gameConfiguration.getSymbolsToWin());
+        Judge judge = new Judge(gameBoard.getBoardSize(), gameConfiguration.getSymbolsToWin());
         do {
             Turn turn = new Turn(userInterface, player, gameBoard);
             turn.run();

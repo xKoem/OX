@@ -7,8 +7,8 @@ public class GameConfiguration {
 
     private int MIN_X = 3;
     private int MIN_Y = 3;
-    private int MAX_X = 20;
-    private int MAX_Y = 20;
+    private int MAX_X = 100;
+    private int MAX_Y = 100;
     private int MIN_SYMBOLS_TO_WIN = 3;
 
     private int sizeX;
