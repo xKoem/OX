@@ -104,6 +104,7 @@ public class Init {
             return Optional.empty();
         }
         return value;
+
     }
 
     Optional<Integer> tryChangeStringToIntBetweenMinAndMaxValue(String string, int minValue, int maxValue) {
