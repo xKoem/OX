@@ -1,5 +1,7 @@
 package pl.xkoem;
 
+import pl.xkoem.board.GameBoard;
+
 public class Judge {
 
     private int emptySlotsOnBoard;

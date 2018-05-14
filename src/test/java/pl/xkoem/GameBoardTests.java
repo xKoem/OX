@@ -2,6 +2,7 @@ package pl.xkoem;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.xkoem.board.GameBoard;
 import pl.xkoem.userinterface.UserInterface;
 
 import java.io.ByteArrayOutputStream;

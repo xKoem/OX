@@ -1,11 +1,12 @@
-package pl.xkoem;
+package pl.xkoem.board;
 
+import pl.xkoem.GameConfiguration;
+import pl.xkoem.Symbol;
 import pl.xkoem.userinterface.UserInterface;
 
 import java.security.InvalidParameterException;
 
 public class GameBoard {
-
     private Symbol[] boardSymbols;
     private final int width;
     private final int height;
@@ -23,25 +24,10 @@ public class GameBoard {
     }
 
     public void drawBoard() {
-        StringBuilder stringBuilder = new StringBuilder();
-        int position = 0;
-
-        int maxSize = Integer.toString(boardSymbols.length).length();
-
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < width; j++) {
-                String s = String.format(
-                        boardSymbols[position] == null? "%1$"+(maxSize+2)+"s": "%1$"+(maxSize+2 + 9)+"s" ,
-                        boardSymbols[position] == null? position++: boardSymbols[position++]
-                );
-                stringBuilder.append(s);
-            }
-            stringBuilder.append("\n");
-        }
-        userInterface.accept(stringBuilder.toString());
+        BoardDrawer.drawBoard(boardSymbols, userInterface, width, height);
     }
 
-    boolean isPositionValid(int position) {
+    public boolean isPositionValid(int position) {
         if(position < 0 || position > boardSymbols.length -1)
             return false;
         return boardSymbols[position] == null;
@@ -60,18 +46,18 @@ public class GameBoard {
         return boardSymbols.length;
     }
 
-    int[] translatePositionToCoordinates(int position) {
+    public int[] translatePositionToCoordinates(int position) {
         int positions[] = new int[2];
         positions[1] = (position/width);
         positions[0] = position - (position/width) * width;
         return positions;
     }
 
-    int translateCoordinatesToPosition(int x, int y) {
+    public int translateCoordinatesToPosition(int x, int y) {
         return y * width + x;
     }
 
-    Symbol getSymbolAtPosition(int x, int y) {
+    public Symbol getSymbolAtPosition(int x, int y) {
         int position = translateCoordinatesToPosition(x,y);
         if(position >= boardSymbols.length || position < 0) {
             throw new InvalidParameterException();
@@ -87,11 +73,11 @@ public class GameBoard {
         return boardSymbols[position];
     }
 
-    int getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    int getHeight() {
+    public int getHeight() {
         return height;
     }
 }

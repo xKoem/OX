@@ -1,6 +1,7 @@
 package pl.xkoem.gamestates;
 
 import pl.xkoem.*;
+import pl.xkoem.board.GameBoard;
 import pl.xkoem.userinterface.language.LanguageName;
 import pl.xkoem.userinterface.ReplacePattern;
 import pl.xkoem.userinterface.UserInterface;
