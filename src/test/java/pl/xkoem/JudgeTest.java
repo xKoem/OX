@@ -32,7 +32,7 @@ public class JudgeTest {
         gameBoard = new GameBoard(new GameConfiguration(), userInterface);
     }
 
-    private void setSymbolsStPosition(Symbol symbol, int... positions) {
+    private void setSymbolsAtPosition(Symbol symbol, int... positions) {
         for (int position: positions) {
             gameBoard.setSymbolAtPosition(symbol, position);
         }
@@ -50,32 +50,32 @@ public class JudgeTest {
     }
 
     public void testCheckVerticalShouldReturnTrue() {
-        setSymbolsStPosition(O, 2, 5);
-        setSymbolsStPosition(X, 1, 4, 7);
+        setSymbolsAtPosition(O, 2, 5);
+        setSymbolsAtPosition(X, 1, 4, 7);
 
         assertTrue(judgeWithBoardSize9.checkVertical(gameBoard, 7));
     }
 
     public void testCheckHorizontalShouldReturnTrue() {
-        setSymbolsStPosition(X, 6, 7, 8);
+        setSymbolsAtPosition(X, 6, 7, 8);
 
         assertTrue(judgeWithBoardSize9.checkHorizontal(gameBoard, 8));
     }
 
     public void testCheckNewPositionWhenIsHorizontal() {
-        setSymbolsStPosition(X, 6, 7, 8);
+        setSymbolsAtPosition(X, 6, 7, 8);
 
         assertTrue(judgeWithBoardSize9.checkNewPosition(gameBoard));
     }
 
     public void testDecreasingDiagonal_whenShouldBeCorrect() {
-        setSymbolsStPosition(X, 0, 4, 8);
+        setSymbolsAtPosition(X, 0, 4, 8);
 
         assertTrue(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 8));
     }
 
     public void testDecreasingDiagonal_OtherTry_whenShouldBeCorrect() {
-        setSymbolsStPosition(X, 8, 4, 0);
+        setSymbolsAtPosition(X, 8, 4, 0);
 
         assertTrue(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 0));
     }
@@ -91,7 +91,7 @@ public class JudgeTest {
     }
 
     public void testIncreasingDiagonal_whenShouldBeCorrect() {
-        setSymbolsStPosition(X, 6, 4, 2);
+        setSymbolsAtPosition(X, 6, 4, 2);
 
         assertTrue(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, 4));
     }
@@ -126,27 +126,27 @@ public class JudgeTest {
     }
 
     public void testIncreasingDiagonal_on_3x3_board_shouldReturnFalse() {
-        setSymbolsStPosition(X, 1, 0);
+        setSymbolsAtPosition(X, 1, 0);
 
         assertFalse(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, 1));
     }
 
     public void testDecreasingDiagonal_on_3x3_board_shouldReturnFalse() {
-        setSymbolsStPosition(X, 1, 0);
+        setSymbolsAtPosition(X, 1, 0);
 
 
         assertFalse(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 1));
     }
 
     public void testDecreasingDiagonal_on_3x3_board_putting_X_onLeftSide_shouldReturnFalse() {
-        setSymbolsStPosition(X, 0, 2);
+        setSymbolsAtPosition(X, 0, 2);
 
 
         assertFalse(judgeWithBoardSize9.checkDecreasingDiagonal(gameBoard, 2));
     }
 
     public void testIncreasingDiagonal_on_3x3_board_putting_X_onLeftSide_shouldReturnFalse() {
-        setSymbolsStPosition(X, 0, 2);
+        setSymbolsAtPosition(X, 0, 2);
 
         assertFalse(judgeWithBoardSize9.checkIncreasingDiagonal(gameBoard, 2));
     }

@@ -6,6 +6,7 @@ import pl.xkoem.userinterface.UserInterface;
 class BoardDrawer {
 
     private static final int CELL_SPACING = 2;
+    private static final int ADDITIONAL_SPACING_FOR_ASCII_CODE = 9;
 
     static void drawBoard(BoardSymbols boardSymbols, UserInterface userInterface, int width, int height) {
         userInterface.accept(prepareBoard(boardSymbols, width, height));
@@ -30,7 +31,7 @@ class BoardDrawer {
         if (symbol == Symbol.EMPTY) {
             return String.format("%1$" + (maxSize + CELL_SPACING) + "s", position);
         } else {
-            return String.format("%1$" + (maxSize + CELL_SPACING + 9) + "s", symbol);
+            return String.format("%1$" + (maxSize + CELL_SPACING + ADDITIONAL_SPACING_FOR_ASCII_CODE) + "s", symbol);
         }
     }
 

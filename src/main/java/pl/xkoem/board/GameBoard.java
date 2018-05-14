@@ -19,8 +19,8 @@ public class GameBoard {
         this.height = boardSize[1];
         this.userInterface = userInterface;
         int numberOfPositions = width * height;
-        boardSymbols = new BoardSymbols(numberOfPositions);
-        newestPosition = -1;
+        this.boardSymbols = new BoardSymbols(numberOfPositions);
+        this.newestPosition = -1;
     }
 
     public void drawBoard() {
